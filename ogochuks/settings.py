@@ -101,7 +101,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'bessie_beau.urls'
+ROOT_URLCONF = 'ogochuks.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -130,7 +130,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bessie_beau.wsgi.application'
+WSGI_APPLICATION = 'ogochuks.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
