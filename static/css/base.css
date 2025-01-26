@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap');
 
 /* Global style */
 
@@ -271,6 +271,16 @@ a.category-badge > span.badge:hover {
     padding: 30px;
 }
 
+.navbar-scrolled {
+    background-color:var(--black) !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+img#hero_image {
+    filter: brightness(0.5);
+}
+
 /* Footer */
 footer {
     display: flex;
@@ -279,6 +289,7 @@ footer {
     margin-top: auto;
     text-align: center;
     width: 100%;
+    color: red;
 }
 
 .social-networks-title {
@@ -318,9 +329,23 @@ footer {
         position: relative;
     }
 
+    /* #hero-image {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        filter: brightness(0.6);
+    } */
+
+  
+
     .hero-image-text {
         position: absolute;
-        top: 60%;
+        top: 30%;
         width: 100%;
         font-size: 1.5rem;
     }

@@ -28,16 +28,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', '')
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEVELOPMENT' in os.environ
+DEBUG = os.environ.get('DEVELOPMENT', False) 
 
-ALLOWED_HOSTS = ['bessiebeau.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ogochuksstyles.com', 'www.ogochuksstyles.com', 'localhost', '127.0.0.1']
 
-CSRF_TRUSTED_ORIGINS = ['https://bessiebeau.com','http://bessiebeau.com']
-CSRF_ALLOWED_ORIGINS = ['https://bessiebeau.com']
-CORS_ORIGINS_WHITELIST = ['https://bessiebeau.com']
+CSRF_TRUSTED_ORIGINS = ['https://ogochuksstyles.com', 'http://ogochuksstyles.com']
+CSRF_ALLOWED_ORIGINS = ['https://ogochuksstyles.com']
+CORS_ORIGINS_WHITELIST = ['https://ogochuksstyles.com']
 
 # Tells Django to store messages in the session 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
@@ -194,7 +194,7 @@ if 'USE_AWS' in os.environ:
     }
 
     # Bucket Config
-    AWS_STORAGE_BUCKET_NAME = 'bessiebeau'
+    AWS_STORAGE_BUCKET_NAME = 'ogochuksstyles'
     AWS_S3_REGION_NAME = 'eu-west-1'
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
@@ -221,7 +221,7 @@ STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 # Email Backend setup for sending emails 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'bessiebeau@example.com'
+    DEFAULT_FROM_EMAIL = 'ogochuksstyles@example.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
