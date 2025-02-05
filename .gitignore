@@ -9,10 +9,10 @@ venv/
 .python-version
 setup_env.sh
 /staticfiles/
-build/
-__pycache__/
+/build/
+/__pycache__/
 *.py[cod]
 *$py.class
-node_modules/
-.github/
+/node_modules/
+/.github/
 cloudinary_python.txt
