@@ -8,6 +8,8 @@ core.python*
 venv/
 .python-version
 setup_env.sh
+/staticfiles/
+build/
 __pycache__/
 *.py[cod]
 *$py.class
