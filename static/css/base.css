@@ -277,6 +277,10 @@ a.category-badge > span.badge:hover {
 }
 
 
+img#hero_image_mobile {
+    filter: brightness(0.5);
+}
+
 img#hero_image {
     filter: brightness(0.5);
 }
@@ -301,7 +305,7 @@ footer {
 /* Portrait  */
 
 /* Screen sizes equal to or less than 395px wide */
-@media (max-width: 395px) {
+/* @media (max-width: 395px) {
     .mt-5, .my-5 {
         margin-top: 3.5rem!important;
     }
@@ -309,7 +313,7 @@ footer {
     .text-uppercase {
         text-transform: none!important;
     }
-}
+} */
 
 /* Screen sizes equal to or less than 540px wide */
 @media (max-width: 540px) {
@@ -327,21 +331,8 @@ footer {
     /* Hero image */
     #hero-image-mobile {
         position: relative;
+        filter: brightness(0.5);
     }
-
-    /* #hero-image {
-        display: none;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        filter: brightness(0.6);
-    } */
-
-  
 
     .hero-image-text {
         position: absolute;
@@ -374,43 +365,12 @@ footer {
 }
 
 /* Screen sizes equal to or less than 825px wide */
-@media (max-width: 825px) {
-     /* Hero image */
-     #hero-image-mobile {
-        position: relative;
-    }
 
-    .hero-image-text {
-        position: absolute;
-        top: 85%;
-    }
-
-    .text-uppercase {
-        text-transform: none!important;
-    }
-
-    #hero-image {
-        display: none;
-    }
-}
 
 /* Landscape  */
 /* Screen sizes equal to or larger than 667px wide */
 @media screen and (min-width: 667px) and (orientation: landscape) {
     /* Hero image */
-    #hero-image {
-        position: relative;
-    }
-
-    .hero-image-text {
-        position: absolute;
-        top: 55%;
-        left: 12.5rem;
-    }
-
-    #hero-image-mobile {
-        display: none;
-    }
 
     .home-btn {
         width: 70%;

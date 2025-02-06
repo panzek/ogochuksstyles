@@ -7,24 +7,28 @@
 <div>
   <!-- Hero Image  -->
   <div class="pt-0 text-center"> 
-      <!-- <img src="{{ MEDIA_URL }}hero-image-mobile.webp" id="hero-image-mobile" class="img-fluid" alt="Ogochuks Styles Hero Image"> -->
-      <img src="{{ MEDIA_URL }}hero_image_new.webp" id="hero_image" class="img-fluid max-width: 100%; height-auto;"  alt="Ogochuks Styles Hero Image">
-  </div>
-
-  <!-- Hero image text  -->
-  <div class="hero-image-text">           
-    <div class="text-center">
-        <h1 class="text-uppercase">
-            Ogochuks Styles
-        </h1>
-        <span class="haute-couture my-5">
-          +353... | Dublin
-        </span>
+      <img src="{{ MEDIA_URL }}hero-image-mobile.webp" id="hero-image-mobile" class="img-fluid d-block d-md-none" alt="Ogochuks Styles Hero Image">
+      <img src="{{ MEDIA_URL }}hero_image_new.webp" id="hero_image" class="img-fluid d-none d-md-block" alt="Ogochuks Styles Hero Image">
+        <!-- Hero image text  -->
+    <div class="card-img-overlay d-flex justify-content-center align-self-md-end text-white d-none d-md-block">           
+      <div class="text-center ">
+          <h1 class="text-uppercase">
+              Ogochuks Styles
+          </h1>
+          <span class="haute-couture my-5">
+            Dublin | Ireland
+          </span>
+          <div class="mt-3 ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+            </svg>
+          </div>
+      </div>
     </div>
   </div>
 
   <!-- Our Services Section -->
-  <div class="container text-center mt-5 pb-5">
+  <div class="container col-sm-12 col-md-6 text-center mt-5 pb-5 ">
     <h3 class="text-uppercase text-muted">Our Services</h3> 
     <div class="card-group g-2">
       <div class="card">
@@ -49,17 +53,37 @@
   </div>  
 
   <!-- Our awesome caps Section -->
-  <div class="container text-center mt-1 pb-2">
-      <h3 class="text-uppercase text-muted">Our awesome caps</h3> 
+  <div class="container mt-1 pb-0">
+      <h3 class="text-uppercase text-center text-muted">Satin-Lined Skull Caps</h3> 
       <div class="row">
-        <div class="col-sm-6">
-          <div class="card">
-            <img src="{{ MEDIA_URL }}ogochuksstyles_caps.jpg" class="card-img-top" alt="...">
-          </div>
+        <div class="col-sm-4">
+            <div class="text-lg-start">
+              <p>
+                Our Satin-Lined Skull Caps are carefully designed to provide extra protection for your hair 
+                with our satin lining. The satin material reduces friction, minimises breakage, retains 
+                hair's moisture, keeping it healthier and more manageable.
+              </p>
+              <p>
+                Our skull caps combine trending fashion designs with practicality. Ever have your hair ruined 
+                after a footbal session in the rain? Frustrated when your hair begins to frizz just days after 
+                styling? These cap let you look your best without compromising your haircare routine.
+              </p>
+              <p>
+                Perhaps you're tired of walking around in a traditional bonnet? These caps offer the perfect 
+                alternative for a polished, stylish appearance, whether you're training at Astro, running 
+                in Santry or heading out to meet some friends.
+              </p>
+              <h5 class="card-title">What makes our Caps different?</h5>
+            <p class="card-text">Each Satin-Lined Cap features an innovative waterproof material 
+              sewn into the design, offering convenience and durability. This essential layer 
+              reduces the risk of water soaking through to the inner satin lining, keeping your 
+              hair protected from excess moisture.
+            </p>
+            </div>
         </div>
-        <div class="col-sm-6 pb-2">
-          <div class="card">
-            <img src="{{ MEDIA_URL }}ogochuksstyles_caps.jpg" class="card-img-top" alt="...">
+        <div class="col-sm-6 col-md-8 mx-auto pb-2">
+          <div>
+            <img src="{{ MEDIA_URL }}ogochuksstyles_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
           </div>
         </div>
       </div>
@@ -70,9 +94,15 @@
         <div class="card">
           <img src="{{ MEDIA_URL }}ogochuksstyles_cap2.webp" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn home-beauty-btn text-uppercase border border-dark bg-white"><small class="text-body-secondary">Buy Now</small></a>
+            
+            <div class="card-text text-center">
+              <h5>
+                Remember, Ogochuks styles you!
+              </h5>
+              <a href="{% url 'products' %}" class="btn home-beauty-btn text-uppercase text-center border border-dark">
+                <small class="text-body-secondary">Buy Now</small>
+              </a>
+            </div>
           </div>
         </div>
         <div class="card">
@@ -84,39 +114,33 @@
   <!-- Ogochuks Styles Section -->
   <div class="container text-center mt-1 pb-2">
       <div class="col-12 mt-5">
-        <span class="haute-couture my-5">
-          Hair Styles!
-        </span>
-        <div>
-            <h1 class="font-weight-bold text-uppercase text-muted">
-              Ogochuks Style U!
-            </h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <div class="card">
-            <img src="{{ MEDIA_URL }}freestyle_cornrows_2.webp" class="card-img-top d-block" alt="...">
-          </div>
-        </div>
-        <div class="col-sm-6 pb-2">
-          <div class="card">
-            <img src="{{ MEDIA_URL }}style_locs.webp" class="card-img-top" alt="...">
-          </div>
-        </div>
+
+        <h3 class="text-uppercase text-center text-muted">Hair Styles!</h3> 
       </div>
       <div class="card-group pb-2">
         <div class="card">
-          <img src="{{ MEDIA_URL }}barrel_twist_locs.webp" class="card-img-top" alt="...">
+          <img src="{{ MEDIA_URL }}braids.webp" class="card-img-top" alt="braids">
         </div>
         <div class="card">
-          <img src="{{ MEDIA_URL }}freestyle_cornrows.webp" class="card-img-top" alt="...">
+          <img src="{{ MEDIA_URL }}stitch_cornrows.webp" class="card-img-top" alt="stitch cornrows">
         </div>
         <div class="card">
-          <img src="{{ MEDIA_URL }}barrel_twist.webp" class="card-img-top" alt="...">
+          <img src="{{ MEDIA_URL }}freestyle_cornrows_2.webp" class="card-img-top" alt="freestyle cornrows">
+        </div>
+      </div>
+
+      <div class="card-group pb-2">
+        <div class="card">
+          <img src="{{ MEDIA_URL }}barrel_twist_locs.webp" class="card-img-top" alt="barrel twist locs">
         </div>
         <div class="card">
-          <img src="{{ MEDIA_URL }}cornrows.webp" class="card-img-top" alt="...">
+          <img src="{{ MEDIA_URL }}freestyle_cornrows.webp" class="card-img-top" alt="freestyle cornrows">
+        </div>
+        <div class="card">
+          <img src="{{ MEDIA_URL }}barrel_twist.webp" class="card-img-top" alt="barrel twist">
+        </div>
+        <div class="card">
+          <img src="{{ MEDIA_URL }}cornrows.webp" class="card-img-top" alt="cornrows">
         </div>
       </div>
       <div class="col-sm-12 col-md-6 mx-auto"> 
@@ -129,7 +153,7 @@
        <!-- Add Schedule Appointment button  -->
         <div class="mt-2">
           <h2>
-              <a href="{% url 'products' %}" aria-label="Go to all products page" class="btn home-btn home-mobile-btn btn-dark text-uppercase py-3">Schedule An Appointment</a>
+              <a href="#" aria-label="Go to all products page" class="btn home-btn home-mobile-btn btn-dark text-uppercase py-3">Schedule An Appointment</a>
           </h2>
         </div>
         <hr class="divider bg-lightgray">
@@ -203,61 +227,50 @@
     <!-- Add testimonial button  -->
     <div class="text-center my-3"> 
       <a href="{% url 'testimonial' %}" aria-label="Write a testimonial" class="btn home-beauty-btn py-2 border border-lightgray bg-white font-weight-bold" itemprop =“description”>Write a testimonial</a>
-      <hr class="divider bg-lightgray w-100">
     </div>
   </div>
   
-   <!-- Background Image Overlay First -->
-  <div class="card text-bg-dark">
+    <!-- Center text vertically & horizontally on the image First -->
+  <!-- <div class="card text-bg-dark">
     <img src="{{ MEDIA_URL }}bg_image.webp" class="card-img" alt="...">
-    <div class="card-img-overlay mx-auto">
-      <p class="card-text">"THERE IS NO REAL BEAUTY WITHOUT SOME SLIGHT IMPERFECTION"</p>
+    <div class="card-img-overlay d-flex justify-content-center align-items-center">
+      <div class="text-center">
+        <p class="card-text">"THERE IS NO REAL BEAUTY WITHOUT SOME SLIGHT IMPERFECTION"</p>
       <p class="card-text"><small>- James Salter</small></p>
+      </div>
     </div>
-  </div>
+  </div> -->
   
   <!-- About Us  -->
-  <div class="container text-center mt-5">
-        <div class="hero-image-text h-100 mx-1 my-2" >
-          <div class="col-12 mt-5">
-                <h3 class="text-uppercase text-muted">About Us</h3> 
-          </div>
-        </div>
-  </div>
   <div class="container">
     <div class="row">
-      <div class="col-sm-6 bg-light">
-          <div class="col-12 text-lg-end">
-              <div>
-                <h4 class="text-uppercase text-muted">OgochuksStyles...</h4> 
-                <span class="haute-couture my-5">
-                  For the Made Man & Women 
-                </span>
-              </div>
+      <div class="col-sm-12 col-md-6 mx-auto"> 
+        <div class="col-12 text-lg-center">
+          <div>
+            <h4 class="text-uppercase text-muted">About Us</h4>
           </div>
-      </div>
-      <div class="col-sm-12 col-md-6 mx-auto pb-2 bg-light">
-        <div>
-          <p>
-            Lorem ipsum dolor sitope amet, consectetur adipisicing elitip. Massumenda, dolore, cum vel modi 
-            asperiores consequatur suscipit quidem ducimus eveniet iure expedita consecteture odiogil voluptatum 
-            similique fugit voluptates atem accusamus quae quas dolorem tenetur facere tempora maiores adipisci 
-            reiciendis accusantium voluptatibus id voluptate tempore dolor harum nisi amet! Nobis, eaque. 
-          </p>
         </div>
+        <p >
+          Lorem ipsum dolor sitope amet, consectetur adipisicing elitip. Massumenda, dolore, cum vel modi 
+          asperiores consequatur suscipit quidem ducimus eveniet iure expedita consecteture odiogil voluptatum 
+          similique fugit voluptates atem accusamus quae quas dolorem tenetur facere tempora maiores adipisci 
+          reiciendis accusantium voluptatibus id voluptate tempore dolor harum nisi amet! Nobis, eaque. 
+        </p>
+        <hr class="divider bg-lightgray">
       </div>
     </div>
-
-
   </div>
 
-  <!-- Background Image Overlay Second -->
+  <!-- Center text vertically & horizontally on the image second-->
   <div class="card text-bg-dark">
-  <img src="{{ MEDIA_URL }}bg_image.webp" class="card-img" alt="...">
-  <div class="card-img-overlay mx-auto">
-    <p class="card-text">"Beauty is being comfortable and confident in your own skin"</p>
-    <p class="card-text"><small>- Iman</small></p>
+    <img src="{{ MEDIA_URL }}bg_image.webp" class="card-img" alt="...">
+    <div class="card-img-overlay d-flex justify-content-center align-items-center">
+      <div class="text-center">
+        <p class="card-text text-uppercase">"Beauty is being comfortable and confident in your own skin"</p>
+        <p class="card-text"><small>- Iman</small></p>
+      </div>
+    </div>
   </div>
-</div>
+
 </div>
 {% endblock %}
