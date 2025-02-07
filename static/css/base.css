@@ -277,14 +277,6 @@ a.category-badge > span.badge:hover {
 }
 
 
-img#hero_image_mobile {
-    filter: brightness(0.5);
-}
-
-img#hero_image {
-    filter: brightness(0.5);
-}
-
 /* Footer */
 footer {
     display: flex;
@@ -304,17 +296,6 @@ footer {
 
 /* Portrait  */
 
-/* Screen sizes equal to or less than 395px wide */
-/* @media (max-width: 395px) {
-    .mt-5, .my-5 {
-        margin-top: 3.5rem!important;
-    }
-
-    .text-uppercase {
-        text-transform: none!important;
-    }
-} */
-
 /* Screen sizes equal to or less than 540px wide */
 @media (max-width: 540px) {
     .container {
@@ -328,26 +309,10 @@ footer {
         margin: auto;
     }
 
-    /* Hero image */
-    #hero-image-mobile {
-        position: relative;
-        filter: brightness(0.5);
-    }
-
-    .hero-image-text {
-        position: absolute;
-        top: 30%;
-        width: 100%;
-        font-size: 1.5rem;
-    }
-
-    .home-mobile-btn {
-        width: 50%;
-        padding: 0.3rem;
-    }
-
-    #hero-image {
-        display: none;
+    .container source {
+        display: block;
+        float: none;
+        margin: auto;
     }
 
     .home-beauty-btn {
@@ -363,9 +328,6 @@ footer {
         margin: auto;
     }
 }
-
-/* Screen sizes equal to or less than 825px wide */
-
 
 /* Landscape  */
 /* Screen sizes equal to or larger than 667px wide */

@@ -5,24 +5,29 @@
 
 {% block content %}
 <div>
-  <!-- Hero Image  -->
-  <div class="pt-0 text-center"> 
-      <img src="{{ MEDIA_URL }}hero-image-mobile.webp" id="hero-image-mobile" class="img-fluid d-block d-md-none" alt="Ogochuks Styles Hero Image">
-      <img src="{{ MEDIA_URL }}hero_image_new.webp" id="hero_image" class="img-fluid d-none d-md-block" alt="Ogochuks Styles Hero Image">
-        <!-- Hero image text  -->
-    <div class="card-img-overlay d-flex justify-content-center align-self-md-end text-white d-none d-md-block">           
-      <div class="text-center ">
-          <h1 class="text-uppercase">
-              Ogochuks Styles
-          </h1>
-          <span class="haute-couture my-5">
-            Dublin | Ireland
-          </span>
-          <div class="mt-3 ">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
-            </svg>
-          </div>
+  <!-- Hero video -->
+  <div class="card vh-100">
+    <!-- Video Background -->
+    <div class="vh-100 ">
+      <video autoplay muted loop playsinline class="h-100 w-100" style="object-fit: cover; filter: brightness(0.4);">
+        <source src="{{ MEDIA_URL }}hero-video.mp4" id="hero_image" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    <!-- Overlay Content -->
+    <div class="card-img-overlay d-flex justify-content-center align-items-center align-self-md-center">
+      <div class="text-center text-white">
+        <h1 class="text-uppercase">
+            Ogochuks Styles
+        </h1>
+        <span class="haute-couture my-5">
+          Dublin | Ireland
+        </span>
+        <div class="mt-3 ">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+          </svg>
+        </div>
       </div>
     </div>
   </div>
@@ -229,17 +234,6 @@
       <a href="{% url 'testimonial' %}" aria-label="Write a testimonial" class="btn home-beauty-btn py-2 border border-lightgray bg-white font-weight-bold" itemprop =“description”>Write a testimonial</a>
     </div>
   </div>
-  
-    <!-- Center text vertically & horizontally on the image First -->
-  <!-- <div class="card text-bg-dark">
-    <img src="{{ MEDIA_URL }}bg_image.webp" class="card-img" alt="...">
-    <div class="card-img-overlay d-flex justify-content-center align-items-center">
-      <div class="text-center">
-        <p class="card-text">"THERE IS NO REAL BEAUTY WITHOUT SOME SLIGHT IMPERFECTION"</p>
-      <p class="card-text"><small>- James Salter</small></p>
-      </div>
-    </div>
-  </div> -->
   
   <!-- About Us  -->
   <div class="container">
