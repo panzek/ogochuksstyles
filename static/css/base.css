@@ -276,6 +276,13 @@ a.category-badge > span.badge:hover {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
+/* Bootstrap Carousel */
+.carousel-dark .carousel-control-next-icon, 
+.carousel-dark .carousel-control-prev-icon {
+    filter: invert(0.3) grayscale(100);
+    background-color: black;
+}
+
 
 /* Footer */
 footer {
@@ -313,6 +320,10 @@ footer {
         display: block;
         float: none;
         margin: auto;
+    }
+
+    .text-center.text-white {
+        align-self: flex-end;
     }
 
     .home-beauty-btn {
