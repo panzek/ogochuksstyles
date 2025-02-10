@@ -1,3 +1,4 @@
+ /* from Google fonts site: https://fonts.google.com/selection/embed  */
 @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&display=swap');
 
 /* Global style */
@@ -14,7 +15,7 @@
     
 
     /* TYPOGRAPHY */
-    --content-text: 'Roboto', sans-serif;
+    --content-text: 'Assistant', sans-serif;
 
     /* Linearly scale font size with CLAMP  */
     --step--2: clamp(0.69rem, calc(0.59rem + 0.52vw), 0.96rem);
@@ -41,6 +42,14 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Assistant', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: .5rem;
+    font-weight: 500;
+    line-height: 1.2;
 }
 
 /* main  */
@@ -229,7 +238,7 @@ a.category-badge > span.badge:hover {
 
 /* Convenience classes - colors copied from Bootstrap */
 .arrow-primary {
-    border-bottom-color: #007bff !important;
+    border-bottom-color: #050708 !important;
 }
 
 .arrow-secondary {
@@ -292,11 +301,17 @@ footer {
     margin-top: auto;
     text-align: center;
     width: 100%;
-    color: red;
 }
 
 .social-networks-title {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-style: italic;
+}
+
+/* footer navbar nav  */
+ul.navbar-nav.mx-auto.my-2 {
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
 /* Add media queries for responsiveness. This will center both the text and the image inside the container */
