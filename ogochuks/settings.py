@@ -187,16 +187,6 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 # temporary directory for collectstatic
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Test code
-# if DEBUG:
-#     STATICFILES_DIRS = [
-#         os.path.join(BASE_DIR, 'static')
-#         ]
-# else:
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-# End of test code
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -232,18 +222,21 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET', '')
 
-# Email Backend setup for sending emails 
+# Email Backend setup for sending emails
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
     DEFAULT_FROM_EMAIL = 'ogochuksstyles@example.com'
 else:
+    # Outgoing mail (SMTP) server settings
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_USE_TLS = True
-    EMAIL_PORT = 587
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_USE_SSL = True  # Use SSL for a secure connection
+    EMAIL_USE_TLS = False  # TLS is False since we're using SSL
+    EMAIL_PORT = 465  # SMTP port for SSL
+    EMAIL_HOST = 'mail.ogochuksstyles.com'  # hostname of the outgoing (SMTP) mail server
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')  # acct user email address 
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # acct user email PW
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')  # Default sender email address
+    # Port and email host values from my server Configure Mail Client link: Mail Client Manual Settings
 
 # Google reCAPTCHA 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY') 
