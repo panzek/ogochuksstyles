@@ -2,7 +2,7 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block title %} Contact Us | Bessie + Beau {% endblock %}
+{% block title %} Contact Us | OgochuksStyles {% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -13,16 +13,23 @@
 {% endblock %} 
 
 {% block content %}
-<div class="container-fluid py-5">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12 col-md-6 mx-auto text-center">
-            <hr>
-            <h2 class="mb-4">Get In Touch</h2>
-            <hr class="mb-3">
+            <div>
+                <h1 class="text-5xl font-bold"><mark>Get in Touch</mark></h1>
+                <p>
+                    <em>Remember, Ogochuks Styles You!</em>
+                </p>
+            </div>
+            <div class="py-6">
+                <div><i class="fa-solid fa-envelope-circle-check"></i> Email Address:</div>
+                <span class="text-1xl font-bold">info@ogochuksstyles.com</span>
+            </div>
         </div>  
     </div>  
     <div class="row">
-        <div class="col-12 col-md-6 mx-auto">
+        <div class="col-12 col-md-4 mt-4 mx-auto">
             {% if reviewed %}
                 <div class="alert alert-success" role="alert">
                 </div>
@@ -30,11 +37,15 @@
             <form action="{% url 'contact' %}" method="POST" class="form mb-2">
                 {% csrf_token %}
                 {{ form | crispy }}
-                <div class="btn-group w-100">
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="check1">
+                    <label class="form-check-label" for="check1">Subscribe to our newsletter</label>
+                </div>
+                <div class="btn-group gap-2 w-100">
                     <a href="{% url 'home' %}" class="btn btn-outline-dark rounded-1 mt-2">
                         <span class="text-uppercase">Cancel</span>
                     </a>
-                    <button type="submit" class="btn btn-dark rounded-0 text-uppercase text-light font-weight-bold mt-2" aria-pressed="true">
+                    <button type="submit" class="btn btn-dark rounded-1 text-uppercase text-light mt-2" aria-pressed="true">
                         Send
                     </button>
                 </div>
