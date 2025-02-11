@@ -168,41 +168,6 @@ h1, h2, h3, h4, h5, h6 {
     width: 30%;
 }
 
-/* Mailchimp  */
-#mc_embed_signup {
-    background: #fff;
-    clear: left;
-    font: 14px Helvetica, Arial, sans-serif;
-    width: 600px;
-}
-
-.mailchimp-input {
-    padding: 7px;
-}
-
-.mailchimp-btn {
-    align-items: center;
-    display: flex;
-    flex-direction:row;
-    justify-content:center;
-    min-height: 100%;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-}
-
-.submit-arrow {
-    position: absolute; 
-    right: 10px; 
-    top: 50%; 
-    transform: translateY(-55%); 
-    background: none; 
-    border: none; 
-    cursor: pointer; 
-    font-size: 30px; 
-    padding: 0 10px; 
-    color: #999;
-}
-
 /* End forms  */
 
 .unauthorise-user {
@@ -297,6 +262,10 @@ a.category-badge > span.badge:hover {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
+.navbar-brand {
+    max-width: 60px;
+}
+
 /* Bootstrap Carousel */
 .carousel-dark .carousel-control-next-icon, 
 .carousel-dark .carousel-control-prev-icon {
@@ -324,6 +293,41 @@ footer {
 ul.navbar-nav.mx-auto.my-2 {
     margin-top: 0;
     margin-bottom: 0;
+}
+
+/* Mailchimp  */
+#mc_embed_signup {
+    background: #fff;
+    clear: left;
+    font: 14px Helvetica, Arial, sans-serif;
+    width: 600px;
+}
+
+.mailchimp-input {
+    padding: 7px;
+}
+
+.mailchimp-btn {
+    align-items: center;
+    display: flex;
+    flex-direction:row;
+    justify-content:center;
+    min-height: 100%;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.submit-arrow {
+    position: absolute; 
+    right: 10px; 
+    top: 50%; 
+    transform: translateY(-55%); 
+    background: none; 
+    border: none; 
+    cursor: pointer; 
+    font-size: 30px; 
+    padding: 0 10px; 
+    color: #999;
 }
 
 /* Add media queries for responsiveness. This will center both the text and the image inside the container */
