@@ -238,6 +238,11 @@ else:
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')  # Default sender email address
     # Port and email host values from my server Configure Mail Client link: Mail Client Manual Settings
 
+# Enable Error Reporting for Email
+ADMINS = [('Panzek', 'panzek@yahoo.co.uk')]
+SERVER_EMAIL = 'admin@ogochuksstyles.com'
+EMAIL_SUBJECT_PREFIX = '[Server Error] '
+
 # Google reCAPTCHA 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY') 
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
