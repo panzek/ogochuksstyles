@@ -78,3 +78,13 @@ def user_guide(request):
     context = {}
 
     return render(request, 'home/user_guide.html', context)
+
+# Thank Your Message
+def thank_you(request):
+    """
+    A view to render Thank Your Message
+    """
+
+    context = {}
+
+    return render(request, 'home/thank_you.html', context)

@@ -39,12 +39,12 @@ class ContactForm(forms.ModelForm):
                 self.fields[field].widget.attrs['class'] = 'form-control input-primary rounded max-w-full'
 
     def clean_name(self):
-        first_name = self.cleaned_data.get('name')
-        if not first_name.isalpha():
+        name = self.cleaned_data.get('name')
+        if not name.isalpha():
             raise ValidationError("Name should contain only letters")
-        if len(first_name) < 3:
+        if len(name) < 3:
             raise ValidationError('Name should be at least 3 characters long')
-        return first_name
+        return name
 
     def clean_message(self):
         message = self.cleaned_data.get('message')

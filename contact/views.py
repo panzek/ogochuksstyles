@@ -27,10 +27,16 @@ def contact(request):
                 [settings.DEFAULT_FROM_EMAIL],  # to email
             )
 
-            messages.success(request, 'Contact form was successfully submitted')
-            return redirect('home')
+        # redirect to a new url
+            return redirect("/thank_you")
+
         else:
-            messages.error(request, 'Failed to submit contact form. Please ensure the form is valid')
+            # if form is not valid, re-render the form with errors
+            template = 'contact/contact.html'
+            context = {
+                'form': form,
+            }
+            return render(request, template, context)
     else:
         form = ContactForm()
 
@@ -48,5 +54,5 @@ def about(request):
     """
 
     context = {}
-    return render(request, 'contact/aboutt.html', context)
+    return render(request, 'home/about.html', context)
 

@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Thank You! | OgochuksStyles {% endblock %}
+
+{% block content %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %} 
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto text-center">
+            <figure>
+                <a class="navbar-brand text-uppercase text-white" href="{% url 'home' %}">
+                    <img src="{{ MEDIA_URL }}ogochuks_logo_black.png" class="img-fluid" alt="Ogochuksstyles logo">
+                </a>
+            </figure>
+            
+            <div>
+                <h1 class="text-2xl font-bold"><mark>Thank You for Getting in Touch!</mark></h1>
+                <span>
+                    We have received your message and would like to thank you for writing to us.<br>
+                </span>
+                <span>We'll reply by email as soon as possible.</span><br>
+                <p>
+                   
+                </p>
+            </div>
+            <div class="py-5 ">
+                <span class="text-1xl font-bold"> <em>Have a nice day!</em></span>
+                <p>
+                    <a href="{% url 'home' %}" aria-label="Go to home page" class="btn text-uppercase text-white rounded border bg-dark mt-3">
+                        Go back Home
+                    </a>
+                </p>
+            </div>
+        </div>  
+    </div>  
+
+</div>
+
+{% endblock %}
