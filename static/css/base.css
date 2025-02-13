@@ -273,6 +273,11 @@ a.category-badge > span.badge:hover {
     background-color: black;
 }
 
+/* Contact form */
+.form-check {
+    text-align: start;
+}
+
 
 /* Footer */
 footer {

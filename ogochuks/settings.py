@@ -92,6 +92,10 @@ LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
+SILENCED_SYSTEM_CHECKS = [
+    'mysql.W002'
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -241,7 +245,7 @@ else:
 # Enable Error Reporting for Email
 ADMINS = [('Panzek', 'panzek@yahoo.co.uk')]
 SERVER_EMAIL = 'admin@ogochuksstyles.com'
-EMAIL_SUBJECT_PREFIX = '[Server Error] '
+EMAIL_SUBJECT_PREFIX = '[Server Error]'
 
 # Google reCAPTCHA 
 RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY') 
