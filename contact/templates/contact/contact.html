@@ -43,7 +43,7 @@
             <form action="{% url 'contact' %}" method="POST" class="form mb-2">
                 {% csrf_token %}
                 {{ form | crispy }}
-                <div class="mb-3 form-check text-left">
+                <div class="py-2 form-check text-left">
                     <input type="checkbox" class="form-check-input" id="check1">
                     <label class="form-check-label" for="check1">Subscribe to our newsletter</label>
                 </div>

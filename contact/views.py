@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.conf import settings
+import smtplib
 from .forms import ContactForm
 
 
@@ -31,10 +32,10 @@ def contact(request):
                 )
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
+            except smtplib.SMTPException as e:
+                return HttpResponse(f"SMTP error occurred: {str(e)}")
             except Exception as e:
-                # Log the error
-                print(e)
-                return HttpResponse('Error occurred while sending email.')
+                return HttpResponse(f"An error occurred: {str(e)}")
 
             # redirect to a new url
             return redirect("/thank_you")
