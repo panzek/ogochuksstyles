@@ -26,7 +26,7 @@
         <p class="signin-intro text-center">{% blocktrans with site.name as site_name %}
           Log in now to unlock your exclusive access to products and offers.<br>
           Not registered yet? 
-          <a href="{{ signup_url }}">Create a {{ site_name }} Account</a>{% endblocktrans %}
+          <a href="{{ signup_url }}">Create an Account</a>{% endblocktrans %}
         </p>
         <form class="login" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
@@ -37,7 +37,7 @@
           <p class="mt-2">
             <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
           </p>
-          <div class="btn-group w-100">
+          <div class="btn-group w-100 g-2">
             <a href="{% url 'home' %}" class="btn btn-outline-dark rounded-1 mt-2">
                 <span class="text-uppercase">Home</span>
             </a>
