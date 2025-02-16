@@ -29,6 +29,8 @@ DEBUG = os.environ.get('DEVELOPMENT', False)
 ALLOWED_HOSTS = [
     'ogochuksstyles.com',
     'www.ogochuksstyles.com',
+    #'server1.ipanzek.com',
+    #'mail.ogochuksstyles.com',
     'localhost',
     '127.0.0.1'
     ]
@@ -233,10 +235,10 @@ if 'DEVELOPMENT' in os.environ:
 else:
     # Outgoing mail (SMTP) server settings
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_USE_SSL = False  # SSL is False since we're using TLS 
-    EMAIL_USE_TLS = True  # TLS is True since we're not using SSL
-    EMAIL_PORT = 587  # SMTP port for TLS
-    EMAIL_HOST = 'mail.ogochuksstyles.com'  # hostname of the outgoing (SMTP) mail server
+    EMAIL_USE_SSL = True  # SSL is True since we're using TLS 
+    EMAIL_USE_TLS = False  # TLS is False since we're using SSL
+    EMAIL_PORT = 465  # SMTP port for SSL
+    EMAIL_HOST = os.environ.get('EMAIL_HOST')  # hostname of the outgoing (SMTP) mail server
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')  # acct user email address 
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # acct user email PW
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')  # Default sender email address

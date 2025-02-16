@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-# from django.contrib import messages
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from django.conf import settings
@@ -12,8 +11,6 @@ def contact(request):
     A view to render form in template
     """
 
-    form = ContactForm(request.POST)
-
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -25,11 +22,13 @@ def contact(request):
             # Handle SMTP Exceptions
             try:
                 send_mail(
-                    contact_email,
-                    contact_subject,
-                    contact_message,
-                    [settings.DEFAULT_FROM_EMAIL]
+                    contact_subject,  # Subject
+                    contact_message,  # Message
+                    contact_email,  # From email (customer's email address)
+                    [settings.DEFAULT_FROM_EMAIL],  # To email (store owner's email)
+                    fail_silently=False,
                 )
+            
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             except smtplib.SMTPException as e:
@@ -65,4 +64,6 @@ def about(request):
 
     context = {}
     return render(request, 'home/about.html', context)
+
+
 
