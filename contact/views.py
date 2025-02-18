@@ -22,13 +22,12 @@ def contact(request):
             # Handle SMTP Exceptions
             try:
                 send_mail(
-                    contact_subject,  # Subject
-                    contact_message,  # Message
-                    contact_email,  # From email (customer's email address)
-                    [settings.DEFAULT_FROM_EMAIL],  # To email (store owner's email)
-                    fail_silently=False,
+                    contact_subject,
+                    contact_message,
+                    contact_email,
+                    ['info@ogochuksstyles.com',
+                        settings.DEFAULT_FROM_EMAIL],
                 )
-            
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
             except smtplib.SMTPException as e:
@@ -64,6 +63,3 @@ def about(request):
 
     context = {}
     return render(request, 'home/about.html', context)
-
-
-
