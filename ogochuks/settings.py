@@ -29,8 +29,7 @@ DEBUG = os.environ.get('DEVELOPMENT', False)
 ALLOWED_HOSTS = [
     'ogochuksstyles.com',
     'www.ogochuksstyles.com',
-    #'server1.ipanzek.com',
-    #'mail.ogochuksstyles.com',
+    'mail.ogochuksstyles.com',
     'localhost',
     '127.0.0.1'
     ]
@@ -209,16 +208,20 @@ if 'USE_AWS' in os.environ:
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    
+    # Static and Media files storage configuration for Django 5.1+
+    STORAGES = {
+        'default': {
+            'BACKEND': 'ogochuks.custom_storages.MediaStorage',
+        },
+        'staticfiles': {
+            'BACKEND': 'ogochuks.custom_storages.StaticStorage',
+        },
+    }
 
-    # Static and Media files
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    STATICFILES_LOCATION = 'static'
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIAFILES_LOCATION = 'media'
-
-    # Override static and Media URLs in Production
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    # Override static and media URLs in production
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
 # Stripe checkout and Cart variables to calculate delivery cost 
 FREE_DELIVERY_THRESHOLD = 50

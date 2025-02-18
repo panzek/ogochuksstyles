@@ -35,7 +35,7 @@
         <ul class="list-inline list-unstyled text-center text-lg-right mx-auto my-0">
             <li class="list-inline-item dropdown">
                 <a class="text-black nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <div class="text-center text-uppercase text-white">
+                    <div class="text-center text-white">
                         <div><i class="fas fa-user fa-lg" aria-hidden="true"></i></div>
                         {% if request.user.is_authenticated %}
                         <p class="my-0">Hi {{ user | capfirst }}!</p>
@@ -65,7 +65,7 @@
             {% if request.user.is_authenticated %}
             <li class="list-inline-item">
                 <a class="nav-link" href="{% url 'wishlist' %}" aria-label="Go to product wishlist page">
-                    <div class="text-center ">
+                    <div class="text-center text-white">
                         <div><i class="fa-solid fa-heart" aria-hidden="true"></i></div>
                         <p class="my-0">
                             WishList
