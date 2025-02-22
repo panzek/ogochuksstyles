@@ -9,16 +9,7 @@ var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 
 const appearance = {
-    theme: 'flat',
-    variables: {
-        colorPrimary: '#0570de',
-        colorBackground: '#ffffff',
-        colorText: '#30313d',
-        colorDanger: '#df1b41',
-        fontFamily: 'Ideal Sans, system-ui, sans-serif',
-        spacingUnit: '2px',
-        borderRadius: '4px',
-    }
+    theme: 'night'
 };
 
 const elements = stripe.elements({ clientSecret, appearance });
@@ -52,7 +43,7 @@ form.addEventListener('submit', function(ev) {
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
-    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    var saveInfo = Boolean($('#id-save-info').prop('checked'));
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
@@ -66,7 +57,21 @@ form.addEventListener('submit', function(ev) {
         stripe.confirmPayment({
             clientSecret: clientSecret,
             elements,
-            confirmParams: {
+            confirmParems: {
+                payment_method_data: {
+                billing_details: {
+                    name: $.trim(form.full_name.value),
+                    phone: $.trim(form.phone_number.value),
+                    email: $.trim(form.email.value),
+                    address:{
+                        line1: $.trim(form.street_address1.value),
+                        line2: $.trim(form.street_address2.value),
+                        city: $.trim(form.town_or_city.value),
+                        country: $.trim(form.country.value),
+                        state: $.trim(form.county.value),
+                    }
+                }
+                },
                 shipping: {
                     name: $.trim(form.full_name.value),
                     phone: $.trim(form.phone_number.value),
@@ -79,7 +84,7 @@ form.addEventListener('submit', function(ev) {
                         state: $.trim(form.county.value),
                     }
                 },
-                return_url: "https://your-website.com/order-confirmation" // Replace with actual return URL
+                return_url: "https://ogochuksstyles.com/order-confirmation" 
             }
         }).then(function(result) {
             if (result.error) {
