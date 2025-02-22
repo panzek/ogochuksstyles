@@ -9,7 +9,7 @@ var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 
 const appearance = {
-    theme: 'night'
+    theme: 'flat'
 };
 
 const elements = stripe.elements({ clientSecret, appearance });
