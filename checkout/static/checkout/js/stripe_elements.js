@@ -9,53 +9,76 @@ var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
 
 const appearance = {
-    theme: 'flat'
+    theme: 'flat',
+    variables: {
+      colorPrimary: '#0570de',
+      colorBackground: '#ffffff',
+      colorText: '#30313d',
+      colorDanger: '#df1b41',
+      fontFamily: 'Ideal Sans, system-ui, sans-serif',
+      spacingUnit: '2px',
+      borderRadius: '4px',
+     }
 };
 
 const elements = stripe.elements({ clientSecret, appearance });
-
 const addressOptions = {
     mode: 'shipping',
     business: 'OgochuksStyles'
 };
 
-// Define options for Payment Element
+// Define options for payment Element
 const paymentElementOptions = {
     layout: 'auto'
 };
 
 // Create the Address and Payment Elements
 const addressElement = elements.create('address', addressOptions);
+
 const paymentElement = elements.create('payment', paymentElementOptions);
 
 // Mount elements on the page
 addressElement.mount('#address-element');
+
 paymentElement.mount('#payment-element');
+// Handle realtime validation errors on the card element
+card.addEventListener('change', function (event) {
+    var errorDiv = document.getElementById('card-errors');
+    if (event.error) {
+        var html = `
+            <span class="icon" role="alert">
+                <i class="fas fa-times"></i>
+            </span>
+            <span>${event.error.message}</span>
+        `;
+        $(errorDiv).html(html);
+    } else {
+        errorDiv.textContent = '';
+    }
+});
 
 // Handle form submission
 var form = document.getElementById('payment-form');
-
 form.addEventListener('submit', function(ev) {
     ev.preventDefault();
-
     // Disable button to prevent multiple submissions
     $('#submit-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
-    var saveInfo = Boolean($('#id-save-info').prop('checked'));
+    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    // From using {% csrf_token %} in the form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
         'save_info': saveInfo,
     };
-    
+
     var url = '/checkout/cache_checkout_data/';
 
     $.post(url, postData).done(function () {
-        stripe.confirmPayment({
-            clientSecret: clientSecret,
+        stripe.confirmPayment(clientSecret, {
             elements,
             confirmParems: {
                 payment_method_data: {
@@ -71,27 +94,26 @@ form.addEventListener('submit', function(ev) {
                         state: $.trim(form.county.value),
                     }
                 }
-                },
-                shipping: {
-                    name: $.trim(form.full_name.value),
-                    phone: $.trim(form.phone_number.value),
-                    address: {
-                        line1: $.trim(form.street_address1.value),
-                        line2: $.trim(form.street_address2.value),
-                        city: $.trim(form.town_or_city.value),
-                        country: $.trim(form.country.value),
-                        postal_code: $.trim(form.postcode.value),
-                        state: $.trim(form.county.value),
-                    }
-                },
-                return_url: "https://ogochuksstyles.com/order-confirmation" 
+            },
+            shipping: {
+                name: $.trim(form.full_name.value),
+                phone: $.trim(form.phone_number.value),
+                address: {
+                    line1: $.trim(form.street_address1.value),
+                    line2: $.trim(form.street_address2.value),
+                    city: $.trim(form.town_or_city.value),
+                    country: $.trim(form.country.value),
+                    postal_code: $.trim(form.postcode.value),
+                    state: $.trim(form.county.value),
+                }
             }
+            }    
         }).then(function(result) {
             if (result.error) {
                 var errorDiv = document.getElementById('card-errors');
                 var html = `
                     <span class="icon" role="alert">
-                        <i class="fas fa-times"></i>
+                    <i class="fas fa-times"></i>
                     </span>
                     <span>${result.error.message}</span>`;
                 $(errorDiv).html(html);
@@ -105,6 +127,6 @@ form.addEventListener('submit', function(ev) {
             }
         });
     }).fail(function () {
-        location.reload(); // Reload the page if there's an error
+        location.reload(); // Reload the page if there is an error
     });
 });

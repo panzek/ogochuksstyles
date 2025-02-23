@@ -95,7 +95,13 @@
         {% block postloadjs %}
         <!-- using bootstrap JavaScript to show the toast  -->
         <script>
-            $(".toast").toast("show");
+            document.addEventListener("DOMContentLoaded", function () {
+                var toastElList = document.querySelectorAll(".toast");
+                toastElList.forEach(function (toastEl) {
+                    var toast = new bootstrap.Toast(toastEl);
+                    toast.show();
+                });
+            });
         </script>
 
         <!-- navbar scroll changes colour  -->
