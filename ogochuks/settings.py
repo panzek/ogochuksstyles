@@ -245,7 +245,6 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')  # acct user email address 
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # acct user email PW
     DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')  # Default sender email address
-    # Port and email host values from my server Configure Mail Client link: Mail Client Manual Settings
 
 # Enable Error Reporting for Email
 ADMINS = [('Panzek', 'panzek@yahoo.co.uk')]
