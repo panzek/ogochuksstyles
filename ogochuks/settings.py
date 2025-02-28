@@ -244,7 +244,7 @@ else:
     EMAIL_HOST = os.environ.get('EMAIL_HOST')  # hostname of the outgoing (SMTP) mail server
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')  # acct user email address 
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # acct user email PW
-    DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')  # Default sender email address
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')  # Default sender email address
 
 # Enable Error Reporting for Email
 ADMINS = [('Panzek', 'panzek@yahoo.co.uk')]
