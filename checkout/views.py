@@ -1,15 +1,17 @@
-from django.shortcuts import render, redirect, get_object_or_404 
+from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from profiles.forms import UserProfileForm
-from profiles.models import UserProfile
-from cart.contexts import cart_contents
-
+from django.core.mail import EmailMessage, BadHeaderError
+from django.template.loader import render_to_string
 from django.http import HttpResponse
 from django.views.decorators.http import require_POST
 from .models import Order, OrderLineItem
 from .forms import OrderForm
-from products.models import Product  
+from products.models import Product
+from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
+from cart.contexts import cart_contents
 from django.contrib import messages
+import smtplib
 import stripe
 import json
 
@@ -44,10 +46,18 @@ def cache_checkout_data(request):
             order = order_form.save(commit=False)
             order.stripe_pid = pid
             order.original_cart = json.dumps(request.session.get('cart', {}))
+            # Calculate grand_total from cart
+            cart = request.session.get('cart', {})
+            total = sum(
+                Product.objects.get(id=item_id).price * qty
+                if isinstance(qty, int)
+                else sum(Product.objects.get(id=item_id).price * q for s, q in qty['items_by_size'].items())
+                for item_id, qty in cart.items()
+            )
+            order.grand_total = total
             order.save()
 
             # Create order line items
-            cart = request.session.get('cart', {})
             for item_id, item_data in cart.items():
                 try:
                     product = Product.objects.get(id=item_id)
@@ -139,6 +149,40 @@ def checkout(request):
     return render(request, 'checkout/checkout.html', context)
 
 
+def _send_confirmation_email(order):
+    """Send the user a confirmation email"""   
+    # Customer email
+    cust_email = order.email
+    # Store Order email
+    store_order_email = settings.STORE_ORDER_EMAIL 
+    # Store Contact email
+    contact_email = settings.CONTACT_EMAIL
+    # Email subject and body
+    subject = render_to_string(
+        'checkout/confirmation_emails/confirmation_email_subject.txt',
+        {'order': order})
+    body = render_to_string(
+        'checkout/confirmation_emails/confirmation_email_body.txt',
+        {'order': order, 'contact_email': contact_email})
+
+    try:
+        email = EmailMessage(
+            subject=subject,
+            body=body,
+            from_email=f"Ogochuksstyles <{settings.DEFAULT_FROM_EMAIL}>",  
+            to=[cust_email],
+            bcc=[store_order_email],
+            reply_to=[contact_email],
+        )
+        email.send()
+    except BadHeaderError:
+        return HttpResponse('Invalid header found.')
+    except smtplib.SMTPException as e:
+        return HttpResponse(f"SMTP error occurred: {str(e)}")
+    except Exception as e:
+        return HttpResponse(f"An error occurred: {str(e)}")
+
+
 def checkout_success(request):
     """
     Handle successful checkouts after Stripe redirect
@@ -178,6 +222,9 @@ def checkout_success(request):
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
+
+    # Send confirmation email
+    _send_confirmation_email(order)
 
     if 'cart' in request.session:
         del request.session['cart']

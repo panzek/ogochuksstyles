@@ -245,6 +245,8 @@ else:
     EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')  # acct user email address 
     EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')  # acct user email PW
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')  # Default sender email address
+    CONTACT_EMAIL = os.environ.get('CONTACT_EMAIL')
+    STORE_ORDER_EMAIL = os.environ.get('STORE_ORDER_EMAIL')
 
 # Enable Error Reporting for Email
 ADMINS = [('Panzek', 'panzek@yahoo.co.uk')]
@@ -259,5 +261,3 @@ RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
