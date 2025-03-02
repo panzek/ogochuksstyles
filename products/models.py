@@ -17,25 +17,26 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    """ 
+    """
     Product model
     """
 
     category = models.ForeignKey(
-            Category, 
-            null=True, 
-            blank=True, 
+            Category,
+            null=True,
+            blank=True,
             on_delete=models.SET_NULL
         )
     sku = models.CharField(max_length=250, null=True, blank=True)
     name = models.CharField(max_length=250)
     description = models.TextField()
+    stock = models.IntegerField(default=0)
     has_sizes = models.BooleanField(default=False, null=True, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(
-            max_digits=6, 
-            decimal_places=2, 
-            null=True, 
+            max_digits=6,
+            decimal_places=2,
+            null=True,
             blank=True
         )
     image_url = models.URLField(max_length=1024, null=True, blank=True)

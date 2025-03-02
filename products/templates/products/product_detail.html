@@ -104,9 +104,17 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col{% if s %}-12 mt-2{% endif %}">
+                        <div class="col{% if s %}-12 mt-2{% endif %} gap-2">
                             <div>
-                                <input type="submit" class="btn btn-dark rounded-1 btn-block text-uppercase mt-2 w-55" value="Add to Cart" />
+                            {% if product.stock <= 0 %} 
+                                <h5 class="text-danger">Out of Stock</h5>
+                                {% else %}
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-dark rounded-1 btn-block text-uppercase mx-auto mt-2 w-100">
+                                        Add to Cart <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            {% endif %}
                             </div>
                             <div class="btn-group w-100">
                                 <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-1 mt-2">
