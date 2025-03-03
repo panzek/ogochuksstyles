@@ -40,10 +40,10 @@
                 <div class="alert alert-success" role="alert">
                 </div>
                 {% else %}
-            <form action="{% url 'contact' %}" method="POST" class="form mb-2">
+            <form action="{% url 'contact' %}" method="POST" class="form mb-1">
                 {% csrf_token %}
-                {{ form | crispy }}
-                <div class="py-2 form-check text-left">
+                {% crispy form %}
+                <div class="form-check text-left">
                     <input type="checkbox" class="form-check-input" id="check1">
                     <label class="form-check-label" for="check1">Subscribe to our newsletter</label>
                 </div>

@@ -3,6 +3,9 @@ from django import forms
 from contact.models import Contact
 from django_recaptcha.fields import ReCaptchaField
 from django.core.exceptions import ValidationError
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout
+from crispy_bootstrap5.bootstrap5 import FloatingField
 
 
 class ContactForm(forms.ModelForm):
@@ -10,27 +13,30 @@ class ContactForm(forms.ModelForm):
     A form for customers to send messages to the store owner.
     """
 
-    recaptcha = ReCaptchaField()
-    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}))
+    recaptcha = ReCaptchaField(label="")  # set label to empty string to hide it
 
     class Meta:
         model = Contact
-        fields = ('name', 'email', 'subject', 'message', 'recaptcha')
+        fields = ('name', 'email', 'subject', 'message')
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        placeholders = {
-            'name': 'Enter your name here',
-            'email': 'Enter your email address',  
-            'subject': 'Enter your message subject',  
+        labels = {
+            'name': 'Enter your full name here',
+            'email': 'Enter your email address', 
+            'subject': 'Enter your message subject', 
             'message': 'Enter your message here',
         }
 
-        self.fields['name'].widget.attrs['autofocus'] = True
-        for field in self.fields:
-            if field in placeholders:
-                self.fields[field].widget.attrs['placeholder'] = placeholders[field]
-                self.fields[field].widget.attrs['class'] = 'form-control input-primary rounded max-w-full'
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False  # Prevents crispy form from rending form tags
+        self.helper.layout = Layout(
+            FloatingField("name"),
+            FloatingField("email"),
+            FloatingField("subject"),
+            FloatingField("message"),
+            "recaptcha",  # Add reCAPTCHA field withot FloatingField (it is not an imput with a label)
+        )
 
     def clean_name(self):
         name = self.cleaned_data.get('name', '').strip()  # Strip leading/trailing spaces

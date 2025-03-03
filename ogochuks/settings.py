@@ -69,6 +69,7 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'crispy_forms',
+    'crispy_bootstrap5',
     'storages',
     'django_recaptcha',
 
@@ -109,7 +110,8 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'ogochuks.urls'
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 TEMPLATES = [
     {
