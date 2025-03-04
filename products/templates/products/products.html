@@ -12,9 +12,9 @@
 {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col text-center mt-5">
+        <div class="col-12 col-lg-8 text-center offset-lg-2 mt-5">
             <h2 class="logo-font">Products</h2>
             {% for c in current_categories %}
                 <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
@@ -24,129 +24,115 @@
             <hr class="w-100 mt-1">
         </div>
     </div>
-
-    <div class="row">
-        <div class="product-container col-10 offset-1">
-            <div class="row mt-1 mb-2">
-                <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
-                    <div class="w-50">
-                        <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
-                            <option value="reset"{% if current_sorting == 'None_None' %}selected{% endif %} >Sort by...</option>
-                            <option value="price_asc"{% if current_sorting == 'price_asc' %}selected{% endif %} aria-label="Price (low to high)">Price (low to high)</option>
-                            <option value="price_desc"{% if current_sorting == 'price_desc' %}selected{% endif %} aria-label="Price (high to low)">Price (high to low)</option>
-                            <option value="rating_asc"{% if current_sorting == 'rating_asc' %}selected{% endif %} aria-label="Rating (low to high)">Rating (low to high)</option>
-                            <option value="rating_desc"{% if current_sorting == 'rating_desc' %}selected{% endif %} aria-label="Rating (high to low)">Rating (high to low)</option>
-                            <option value="name_asc"{% if current_sorting == 'name_asc' %}selected{% endif %} aria-label="Name (A-Z)">Name (A-Z)</option>
-                            <option value="name_desc"{% if current_sorting == 'name_desc' %}selected{% endif %} aria-label="Name (Z-A)">Name (Z-A)</option>
-                            <option value="category_asc"{% if current_sorting == 'category_asc' %}selected{% endif %} aria-label="Category (A-Z)">Category (A-Z)</option>
-                            <option value="category_desc"{% if current_sorting == 'category_desc' %}selected{% endif %} aria-label="Category (Z-A)">Category (Z-A)</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 order-md-first">
-                    <p class="text-mute mt-3 text-center text-md-left">
-                        {% if search_term or current_categories or current_sorting != 'None_None' %}
-                            <span class="small font-weight-bold"><a href="{% url 'products' %}">Products Home</a> | </span>
-                        {% endif  %}
-                        {{ products|length }} Products{% if search_term %} found for <strong>{{ search_term }}</strong>{% endif %}
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                {% for product in products %}
-                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                        <div class="card h-100 border-0">
-                            {% if product.image %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
-                            </a>
-                            {% else %}
-                            <a href="{% url 'product_detail' product.id %}">
-                                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }}">
-                            </a>
-                            {% endif %}
-                            <div class="card-body pb-0">
-                                <p class="mb-0">{{ product.name }}</p>
-                            </div>
-                            <div class="card-footer bg-white pt-0 border-0 text-left">
-                                <div class="row">
-                                    <div class="col">
-                                        <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
-                                        {% if product.category %}
-                                            <p class="small mt-1 mb-0">
-                                                <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
-                                                    <i class="fas fa-tag mr-1" aria-hidden="true"></i>{{ product.category.friendly_name }}
-                                                </a>
-                                            </p>
-                                        {% endif %}
-                                        {% if product.rating %}
-                                            <small class="text-muted"><i class="fas fa-star mr-1" aria-hidden="true"></i>{{ product.rating }} / 5</small>
-                                        {% else %}
-                                            <small class="text-muted">No Rating</small>
-                                        {% endif %}
-                                        {% if request.user.is_superuser %}
-                                            <a href="{% url 'edit_product' product.id %}" class="edit-link-color">Edit</a> |
-                                            <!-- Delete Products Button trigger modal -->
-                                            <a type="text" href="{{ product.id }}" class="text-danger" data-toggle="modal" data-target="#product_{{ product.id }}" aria-label="Delete this product" >
-                                                Delete
-                                            </a>
-                                        {% endif %}
-
-                                          <!-- Delete Products Modal -->
-                                            <div class="modal fade" id="product_{{ product.id }}" tabindex="-1" role="dialog" 
-                                                aria-labelledby="delete-products-modal_{{ product.id }}" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                    <h5 class="modal-title" id="delete-products-modal_{{ product.id }}">Delete Product</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                    <h4>{{ user | capfirst }}, are you sure you want to delete this Product?</h4>
-                                                    <p>The product and its related items will be deleted.</p>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No, take me back</button>
-                                                    <a role="button" href="{% url 'delete_product' product.id %}" class="btn btn-danger">Yes, I'm Sure</a>
-                                                    </div>
-                                                </div>
-                                                </div>
-                                            </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% if forloop.counter|divisibleby:1 %}
-                        <div class="col-12 d-sm-none mb-5">
-                            <hr>
-                        </div>
-                    {% endif %}                        
-                    {% if forloop.counter|divisibleby:2 %}
-                        <div class="col-12 d-none d-sm-block d-md-block d-lg-none mb-5">
-                            <hr>
-                        </div>
-                    {% endif %}
-                    {% if forloop.counter|divisibleby:3 %}
-                        <div class="col-12 d-none d-lg-block d-xl-none mb-5">
-                            <hr>
-                        </div>
-                    {% endif %}
-                    {% if forloop.counter|divisibleby:4 %}
-                        <div class="col-12 d-none d-xl-block mb-5">
-                            <hr>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+    <div class="row g-1 mt-1 mb-2 bg-dark">
+        <div class="col-md-3 col-lg-4 col-xl-3 my-auto order-md-last d-flex  justify-content-center justify-content-md-end">
+            <div class="w-50">
+                <select id="sort-selector" class="custom-select custom-select-sm rounded-0 border border-{% if current_sorting != 'None_None' %}info{% else %}black{% endif %}">
+                    <option value="reset"{% if current_sorting == 'None_None' %}selected{% endif %} >Sort by...</option>
+                    <option value="price_asc"{% if current_sorting == 'price_asc' %}selected{% endif %} aria-label="Price (low to high)">Price (low to high)</option>
+                    <option value="price_desc"{% if current_sorting == 'price_desc' %}selected{% endif %} aria-label="Price (high to low)">Price (high to low)</option>
+                    <option value="rating_asc"{% if current_sorting == 'rating_asc' %}selected{% endif %} aria-label="Rating (low to high)">Rating (low to high)</option>
+                    <option value="rating_desc"{% if current_sorting == 'rating_desc' %}selected{% endif %} aria-label="Rating (high to low)">Rating (high to low)</option>
+                    <option value="name_asc"{% if current_sorting == 'name_asc' %}selected{% endif %} aria-label="Name (A-Z)">Name (A-Z)</option>
+                    <option value="name_desc"{% if current_sorting == 'name_desc' %}selected{% endif %} aria-label="Name (Z-A)">Name (Z-A)</option>
+                    <option value="category_asc"{% if current_sorting == 'category_asc' %}selected{% endif %} aria-label="Category (A-Z)">Category (A-Z)</option>
+                    <option value="category_desc"{% if current_sorting == 'category_desc' %}selected{% endif %} aria-label="Category (Z-A)">Category (Z-A)</option>
+                </select>
             </div>
         </div>
+        <div class="col-12 col-md-6 order-md-first text-white">
+            <p class="text-mute mt-3 text-center text-md-left">
+                {% if search_term or current_categories or current_sorting != 'None_None' %}
+                    <span class="small font-weight-bold"><a href="{% url 'products' %}">Products Home</a> | </span>
+                {% endif  %}
+                {{ products|length }} Products{% if search_term %} found for <strong>{{ search_term }}</strong>{% endif %}
+            </p>
+        </div>
     </div>
+    <div class="row g-2">
+    {% for product in products %}
+        <!-- col-6 ensures that on xs & sm screens (mobiles & iPads each takes up half of the width of the row (2 items side by side) -->
+        <!-- with col-md-3 each image takes up one-fourth of the width on medium, large, and extra large screens -->
+        <div class="col-6 col-md-3 ">                
+            <div class="card h-100 w-100 border-1 text-center"> 
+                {% if product.image %}
+            <a href="{% url 'product_detail' product.id %}">
+                <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+            </a>
+            {% else %}
+            <a href="{% url 'product_detail' product.id %}">
+                <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }}">
+            </a>
+            {% endif %}
+            <div class="card-body">
+                <p class="mb-0">{{ product.name }}</p>
+            </div>
+            <div class="card-footer bg-light pt-0 border-0">
+                <p class="lead mb-0 text-left fst-italic fw-bold">€{{ product.price }}</p>
+                {% if product.category %}
+                    <p class="small mt-1 mb-0">
+                        <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
+                            <i class="fas fa-tag mr-1" aria-hidden="true"></i>{{ product.category.friendly_name }}
+                        </a>
+                    </p>
+                {% endif %}
+                {% if product.rating %}
+                    <small class="text-muted"><i class="fas fa-star mr-1" aria-hidden="true"></i>{{ product.rating }} / 5</small>
+                {% else %}
+                    <small class="text-muted">No Rating</small>
+                {% endif %}
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'edit_product' product.id %}" class="edit-link-color">Edit</a> |
+                    <!-- Delete Products Button trigger modal -->
+                    <a type="text" href="{{ product.id }}" class="text-danger" data-toggle="modal" data-target="#product_{{ product.id }}" aria-label="Delete this product" >
+                        Delete
+                    </a>
+                {% endif %}
+
+                    <!-- Delete Products Modal -->
+                <div class="modal fade" id="product_{{ product.id }}" tabindex="-1" role="dialog" 
+                    aria-labelledby="delete-products-modal_{{ product.id }}" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="delete-products-modal_{{ product.id }}">Delete Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                        <h4>{{ user | capfirst }}, are you sure you want to delete this Product?</h4>
+                        <p>The product and its related items will be deleted.</p>
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No, take me back</button>
+                        <a role="button" href="{% url 'delete_product' product.id %}" class="btn btn-danger">Yes, I'm Sure</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+            <!-- <hr> is inserted after every 2 items and only visible on mobile devices and ipads -->
+            {% if forloop.counter|divisibleby:2 %}
+                <div class="col-12 d-md-none mb-5">
+                    <hr>
+                </div>
+            {% endif %}
+     <!-- <hr> is inserted after every 4 items and only visible on medium, large, & extra large devices -->
+            {% if forloop.counter|divisibleby:4 %}
+                <div class="col-12 d-none d-md-block mb-5">
+                    <hr>
+                </div>
+            {% endif %}
+        {% endfor %}              
+    </div>          
 </div>
-<div class="shadow-sm rounded-0 border-black">
-    <a class="d-flex h-100" id="btn-link">
-        <i class="fa-solid fa-arrow-up-from-bracket fa-2x mx-auto my-auto"></i>
+
+<div class="d-flex justify-content-end">
+    <a style="color: Black;" class="d-flex h-100" id="btn-link">
+        <i class="fa-solid fa-arrow-up-from-bracket fa-2x"></i>
     </a>
 </div>
 {% endblock %}
