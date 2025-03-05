@@ -4,12 +4,12 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from django_countries.fields import CountryField
-
 from products.models import Product
+from django_resized import ResizedImageField
 
 
 class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userprofile" )
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="userprofile")
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     street_address1 = models.CharField(max_length=80, null=True, blank=True)
     street_address2 = models.CharField(max_length=80, null=True, blank=True)
@@ -17,7 +17,14 @@ class UserProfile(models.Model):
     county = models.CharField(max_length=80, null=True, blank=True)
     postcode = models.CharField(max_length=20, null=True, blank=True)
     country = CountryField(blank_label='Select Country*', null=True, blank=True)
-    profile_image = models.ImageField(upload_to='profile/', null=True, blank=True)
+    profile_image = ResizedImageField(
+            size=[300, 300],
+            quality=75,
+            upload_to='profile_image/',
+            force_format='WEBP',
+            null=True,
+            blank=True
+        )
 
     def __str__(self):
         return self.user.username

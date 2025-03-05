@@ -1,4 +1,5 @@
 from django.db import models
+from django_resized import ResizedImageField
 
 
 class Category(models.Model):
@@ -21,7 +22,7 @@ class Product(models.Model):
     Product model
     """
 
-    category = models.ForeignKey(
+    category = models.ForeignKey( 
             Category,
             null=True,
             blank=True,
@@ -40,7 +41,14 @@ class Product(models.Model):
             blank=True
         )
     image_url = models.URLField(max_length=1024, null=True, blank=True)
-    image = models.ImageField(null=True, blank=True)
+    image = ResizedImageField(
+            size=[600, 800],
+            quality=75,
+            upload_to='product_image/',
+            force_format='WEBP',
+            null=True,
+            blank=True
+        )
 
     def __str__(self):
         return self.name
