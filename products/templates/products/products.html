@@ -15,7 +15,7 @@
 <div class="container">
     <div class="row">
         <div class="col-12 col-lg-8 text-center offset-lg-2 mt-5">
-            <h2 class="logo-font">Products</h2>
+            <h2 class="logo-font"><mark>Products</mark></h2>
             {% for c in current_categories %}
                 <a class="category-badge text-decoration-none" href="{% url 'products' %}?category={{ c.name }}">
                     <span class="p-2 mt-2 badge badge-white text-black rounded-0 border border-dark">{{ c.friendly_name }}</span>
@@ -49,7 +49,7 @@
             </p>
         </div>
     </div>
-    <div class="row g-2">
+    <div class="row g-1">
     {% for product in products %}
         <!-- col-6 ensures that on xs & sm screens (mobiles & iPads each takes up half of the width of the row (2 items side by side) -->
         <!-- with col-md-3 each image takes up one-fourth of the width on medium, large, and extra large screens -->
@@ -64,11 +64,11 @@
                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }}">
             </a>
             {% endif %}
-            <div class="card-body">
-                <p class="mb-0">{{ product.name }}</p>
+            <div class="card-body pt-0">
+                <p class="mb-0 fs-5">{{ product.name | capfirst}}</p>
             </div>
             <div class="card-footer bg-light pt-0 border-0">
-                <p class="lead mb-0 text-left fst-italic fw-bold">€{{ product.price }}</p>
+                <p class="mb-0 fst-italic">€{{ product.price }}</p>
                 {% if product.category %}
                     <p class="small mt-1 mb-0">
                         <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
@@ -116,14 +116,12 @@
         </div>
             <!-- <hr> is inserted after every 2 items and only visible on mobile devices and ipads -->
             {% if forloop.counter|divisibleby:2 %}
-                <div class="col-12 d-md-none mb-5">
-                    <hr>
+                <div class="col-12 d-md-none mb-0">
                 </div>
             {% endif %}
      <!-- <hr> is inserted after every 4 items and only visible on medium, large, & extra large devices -->
             {% if forloop.counter|divisibleby:4 %}
-                <div class="col-12 d-none d-md-block mb-5">
-                    <hr>
+                <div class="col-12 d-none d-md-block mb-0">
                 </div>
             {% endif %}
         {% endfor %}              

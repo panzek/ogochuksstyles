@@ -22,7 +22,7 @@ class Product(models.Model):
     Product model
     """
 
-    category = models.ForeignKey( 
+    category = models.ForeignKey(
             Category,
             null=True,
             blank=True,
@@ -43,6 +43,7 @@ class Product(models.Model):
     image_url = models.URLField(max_length=1024, null=True, blank=True)
     image = ResizedImageField(
             size=[600, 800],
+            crop=['middle', 'center'],
             quality=75,
             upload_to='product_image/',
             force_format='WEBP',

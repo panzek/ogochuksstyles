@@ -9,7 +9,7 @@
     </div>
 </div>
 {% endblock %} {% block content %}
-<div class="container-fluid py-5">
+<div class="container">
     <div class="row">
         <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
             <div>
@@ -26,8 +26,8 @@
         </div>
         <div class="col-12 col-md-6 col-lg-4">
             <div class="mb-5 mt-md-5">
-                <p class="mb-0">{{ product.name }}</p>
-                <p class="lead mb-0 text-left font-weight-bold">€{{ product.price }}</p>
+                <p class="mb-0 fs-5">{{ product.name }}</p>
+                <p class="mb-0 text-left fst-italic">€{{ product.price }}</p>
                 {% if product.category %}
                 <p class="small mt-1 mb-0">
                     <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}"> <i class="fas fa-tag mr-1" aria-hidden="true"></i>{{ product.category.friendly_name }} </a>
@@ -114,7 +114,7 @@
                                     <div class="text-center">
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         <button type="submit" class="btn btn-dark rounded-1 btn-block text-uppercase mx-auto mt-2 w-100">
-                                            Add to Cart <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                                            Add to Cart <i class="fas fa-shopping-cart ms-2" aria-hidden="true"></i>
                                         </button>
                                     </div>
                                 </form>
