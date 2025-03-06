@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} About Us | Ogochuks Styles {% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %} 
+
+{% block content %}
+<div class="container-fluid py-2">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto text-center bg-light">
+            <hr>
+            <h1 class="mb-2">About Ogochuksstyles</h1>
+            <h5 class="text-uppercase"><mark>Join the Movement</mark></h3> 
+                <div>
+                    <h6 class="text-uppercase fw-bold">@Ogochuksstyles</h3>
+                </div>
+            <hr>      
+        </div>  
+    </div> 
+</div>
+<!-- Cap -->
+<div class="container py-2"> 
+    <div class="row mt-5">
+        <div class="col-12 col-md-6 mx-auto">
+            <h4>Satin-Lined Skull Caps</h4>
+            <p>
+                <a href="{% url 'products' %}" aria-label="Go to all products page"><strong>Our Satin-Lined 
+                Skull Caps</strong></a> are carefully designed to provide extra protection for your hair 
+                with our satin lining. The satin material reduces friction, minimises breakage, retains 
+                hair's moisture, keeping it healthier and more manageable.
+            </p>
+            <p>
+                Our skull caps combine trending fashion designs with practicality. Ever have your 
+                hair ruined after a footbal session in the rain? Frustrated when your hair begins 
+                to frizz just days after styling? These cap let you look your best without 
+                compromising your haircare routine.
+            </p>
+            <p>
+                Perhaps you're tired of walking around in a traditional bonnet? These caps 
+                offer the perfect alternative for a polished, stylish appearance, whether 
+                you're training at Astro, running in Santry or heading out to meet some friends.
+            </p>
+            <h6>
+                What makes our Caps different?
+            </h6>
+            <p>
+                Each Satin-Lined Cap features an innovative waterproof material sewn into the 
+                design, offering convenience and durability. This essential layer reduces the 
+                risk of water soaking through to the inner satin lining, keeping your hair 
+                protected from excess moisture.
+            </p>
+        </div>
+    </div>
+     <!-- Cap Images -->
+    <div class="row d-flex justify-content-center g-1 mb-2 mx-auto"> 
+        <!-- with col-md-3 each image takes up one-fourth of the width of the screen -->
+        <div class="col-6 col-md-3">
+            <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
+        </div>
+        <div class="col-6 col-md-3">
+            <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
+        </div>
+        <div class="col-6 col-md-3">
+            <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
+        </div>
+        <div class="col-6 col-md-3">
+        <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
+        </div>
+    </div>
+    <div class="card-text text-center w-50 mx-auto">
+        <h6>
+          Remember, Ogochuks styles you!
+        </h6>
+    </div>
+</div>
+
+<!-- Caps -->
+<div class="container py-2">
+    <div class="row mt-5">
+        <div class="col-12 col-md-6 mx-auto">
+            <h2>Hair Styling</h2>
+           <ul class="ml-5">
+               <li>Standard delivery within Europe takes approximately within 5 to 6 working days 
+                   (7-15 working days in selected countries outside Europe), this may vary by location 
+                   and even <a href="{% url 'products' %}" aria-label="Go to all products page"><strong>product</strong></a>, and may be sent 
+                   to you in different parcels;
+               </li>
+               <li>All items purchased with us are sent to you directly by our merchants. Getting your 
+                   order to you quickly is our priority and we've worked hard with our merchants to 
+                   provide efficient delivery;
+               </li>
+               <li>If you've purchased multiple items from different <a href="https://www.frenchconnection.com/" target="_blank" rel="noopener" aria-label="Go to French Connection page (opens new tab on third party site)">brands</a>, 
+                   you'll receive a parcel from each of them. Don't worry, you'll get a confirmation email and text message, and tracking 
+                   reference for each of your parcels which you can use to track when your goods will arrive.
+               </li>
+               <li>
+                    Please note that you have to  
+                    <a 
+                        href="https://ogochuksstyles.as.me/schedule.php" 
+                        target="_blank" 
+                        rel="noopener" 
+                        aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)">
+                    Schedule An Appointment
+                    </a>
+               </li>
+               
+           </ul>
+        </div>
+    </div>
+     <!-- Cap Images -->
+    <div class="row d-flex justify-content-center g-1 mb-5 mx-auto"> 
+        <!-- with col-md-3 each image takes up one-fourth of the width of the screen -->
+        <div class="col-6 col-md-3">
+            <img src="{{ MEDIA_URL }}braids_1.webp" class="card-img-top d-block w-100" alt="Satin-Lined Skull Caps">
+        </div>
+        <div class="col-6 col-md-3 ">
+            <img src="{{ MEDIA_URL }}barrel_twist_locs.webp" class="card-img-top d-block w-100" alt="Satin-Lined Skull Caps">
+        </div>
+        <!-- <div class="col-6 col-md-3 ">
+            <img src="{{ MEDIA_URL }}barrel_twist_non_locs.webp" class="card-img-top d-block w-100" alt="Satin-Lined Skull Caps">
+        </div> -->
+    </div>
+</div>
+
+
+{% endblock %}

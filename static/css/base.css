@@ -295,6 +295,13 @@ a.category-badge > span.badge:hover {
     text-align: start;
 }
 
+/* Product */
+p.mb-0.fs-6.product-name:hover {
+    color: #000;
+    cursor:pointer;
+    font-weight: bold;
+    transition: color 0.5s ease;
+}
 
 /* Footer */
 footer {

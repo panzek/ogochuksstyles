@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %} How to Shop on Bessie + Beau  | Bessie + Beau  {% endblock %}
+{% block title %} How to Shop on Ogochuks Styles  | Ogochuks Styles  {% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -16,13 +16,13 @@
     <div class="row">
         <div class="col-12 col-md-6 mx-auto text-center">
             <hr>
-            <h1 class="mb-4">How to Shop on Bessie + Beau</h1>
+            <h1 class="mb-4">How to Shop on Ogochuks Styles</h1>
             <hr class="mb-3">
         </div>  
     </div>  
     <div class="row">
         <div class="col-12 col-md-6 mx-auto">
-            <p>This explains how you can buy the product you want on <a href="{% url 'home' %}" aria-label="Go to home page"><strong>Bessie + Beau</strong></a> luxury fashion and beauty store. </p>
+            <p>This explains how you can buy the product you want on <a href="{% url 'home' %}" aria-label="Go to home page"><strong>Ogochuks Styles</strong></a> customised Caps and luxury items. </p>
                 <div >
                     <ul class="ml-5">
                         <ol>
@@ -37,14 +37,14 @@
                         <li class="ml-5"><strong>Step 1.</strong> Check that you are happy with the products in your bag, then click 
                             “Go to checkout” at the bottom of the page.;
                         </li>
-                        <li class="ml-5"><strong>Step 2.</strong> If you haven’t already signed in, you will be asked to enter your preferred 
+                        <li class="ml-5"><strong>Step 2.</strong> If you haven't already signed in, you will be asked to enter your preferred 
                             email address so that we can send you an email confirming your order once payment 
                             has been made. This can be done either as a guest, or as a registered user. If you 
                             are already signed in you will be directed straight to step three;
                         </li>
                         <li class="ml-5"><strong>Step 3.</strong> Select your delivery method;</li>
                         <li class="ml-5"><strong>Step 4.</strong> You will then be shown to the payment page. Here you can select and enter your 
-                            payment method: You can pay using your Credit or Debit Card OR Apple Pay;
+                            payment method: You can pay using your Credit or Debit Card, Apple Pay, or Revolut;
                         </li>
                         <li class="ml-5"><strong>Step 5.</strong> Once you are happy with your details, you can go ahead and complete 
                             your order by clicking "place order and pay";
@@ -55,7 +55,9 @@
                     <ul class="list-group list-group-flush my-0 ">
                         <span><strong>Have a question?</strong></span>
                         <span>We are ever ready to assist you.</span>
-                        <span>Email Us: <strong>info@bessiebeau.com</strong></span>
+                        <span>
+                            <a href="{% url 'contact' %}" aria-label="Go to contact us page">Contact Us</a>.
+                        </span>
                     </ul>
                 </div>
         </div>

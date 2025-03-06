@@ -59,13 +59,13 @@
             <a href="{% url 'product_detail' product.id %}">
                 <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
             </a>
-            {% else %}
+                {% else %}
             <a href="{% url 'product_detail' product.id %}">
                 <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }}">
             </a>
             {% endif %}
             <div class="card-body pt-0">
-                <p class="mb-0 fs-5">{{ product.name | capfirst}}</p>
+                <p class="mb-0 fs-6 product-name">{{ product.name | capfirst}}</p>
             </div>
             <div class="card-footer bg-light pt-0 border-0">
                 <p class="mb-0 fst-italic">€{{ product.price }}</p>
