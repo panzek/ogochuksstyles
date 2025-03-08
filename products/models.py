@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django_resized import ResizedImageField
 
 
@@ -32,7 +33,7 @@ class Product(models.Model):
     name = models.CharField(max_length=250)
     description = models.TextField()
     stock = models.IntegerField(default=0)
-    has_sizes = models.BooleanField(default=False, null=True, blank=True)
+    has_sizes = models.BooleanField(default=False, blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     rating = models.DecimalField(
             max_digits=6,
@@ -53,3 +54,44 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Review(models.Model):
+    """
+    Review Model
+    """
+
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+            User,
+            null=True,
+            blank=False,
+            on_delete=models.CASCADE
+        )
+
+    name = models.CharField(max_length=100, null=False, blank=False)
+    title = models.CharField(max_length=250, null=False, blank=False)
+    review = models.TextField(max_length=250, null=False, blank=False)
+    rating = models.DecimalField(
+            max_digits=6,
+            decimal_places=2,
+            null=True,
+            blank=True
+        )
+    ip = models.GenericIPAddressField(
+            protocol="IPv4", 
+            null=True, 
+            blank=True, 
+            default="0.0.0.0"
+        )
+    status = models.BooleanField(default=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
+    approved = models.BooleanField(default=False, blank=True)
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return f"Review {self.review} by {self.name}"
+
