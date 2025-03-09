@@ -1,4 +1,3 @@
-import re
 from django import forms
 from .widgets import CustomClearableFileInput
 from crispy_forms.helper import FormHelper

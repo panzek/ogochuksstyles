@@ -3,10 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.db.models import Q
 from django.db.models.functions import Lower
-from .models import Product, Category
-from .forms import ProductForm
-
-# Create your views here.
+from .models import Product, Category, Review
+from .forms import ProductForm, ReviewForm
 
 
 def all_products(request):
@@ -46,8 +44,7 @@ def all_products(request):
             query = request.GET['q']
             if not query:
                 messages.error(request, "You didn't enter any search criteria!")
-                return redirect(reverse('products'))
-            
+                return redirect(reverse('products'))           
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
@@ -63,17 +60,21 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ 
-    A view to render individual product details 
     """
-
-    product = get_object_or_404(Product, id=product_id)
+    A view to render individual product details
+    """
+    product = get_object_or_404(Product, id=product_id) # Ensures product exists
+    review_form = ReviewForm()  # initialise review form
 
     context = {
         'product': product,
+        'form': review_form,  # pass review form to the template
     }
 
+    print(context) # Dubugging
+
     return render(request, 'products/product_detail.html', context)
+
 
 @login_required(login_url='/accounts/login/')
 def add_product(request):
@@ -81,8 +82,7 @@ def add_product(request):
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can add products')
-        return redirect(reverse('home'))
-    
+        return redirect(reverse('home')) 
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -108,12 +108,10 @@ def edit_product(request, product_id):
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can edit products')
-        return redirect(reverse('home'))
-    
+        return redirect(reverse('home'))   
     product = get_object_or_404(Product, id=product_id)
     if request.method == 'POST':
-        """ A view for store owner to update products in the store """
-   
+        """ A view for store owner to update products in the store """  
         form = ProductForm(request.POST, request.FILES, instance=product)
 
         if form.is_valid():
@@ -134,6 +132,7 @@ def edit_product(request, product_id):
 
     return render(request, template, context)
 
+
 @login_required(login_url='/accounts/login/')
 def delete_product(request, product_id):
     """ A view for store owner to delete products in the store """
@@ -142,3 +141,34 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product successfully deleted!')
     return redirect('/')
+
+
+@login_required(login_url='/accounts/login/')
+def submit_review(request, product_id):
+    """ A view to render the review contents page """
+    
+    product = get_object_or_404(Product, id=product_id)  # Ensures product exists
+    review = Review.objects.filter(product=product, approved=True)
+    if request.method == 'POST':
+        review_form = ReviewForm(request.POST)
+        if review_form.is_valid():
+            review_form.instance.name = request.user.username
+            review = review_form.save(commit=False)
+            review.product = product
+
+            review.save()
+            messages.success(
+                request, "Your review successfully submitted, but awaiting approval. Thank You!"
+                )
+            return redirect('product_detail', product_id=product.id)
+        else:
+            messages.error(request, 'Failed to add review. Please ensure the form is valid.')
+    else:
+        review_form = ReviewForm()
+
+    context = {
+        'form': review_form,
+        'product': product,
+    }
+
+    return render(request, "products/product_detail.html", context)

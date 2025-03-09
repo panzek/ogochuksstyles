@@ -1,5 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %} 
+{% load crispy_forms_tags %}
+
 {% block title %} {{ product.name }} | Ogochuks Styles {% endblock %} 
 
 {% block page_header %}
@@ -144,6 +146,61 @@
         </div>
     </div>
 </div>
+<!-- Review tab -->
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-6 text-center bg-light mt-2">
+            <!-- Reviews form -->
+            <div class="card-body mt-3">
+                {% if reviewed %}
+                <div class="alert alert-success" role="alert">
+                    {{ user.username }}, your review is awaiting approval
+                </div>
+                {% else %}
+                <h5><strong>Review this Product:</strong></h5>
+             
+                <span>Share your thoughts with other customers</span>
+                <p>Reviewing as: {{ user.username }}</p>
+                {% if product.id %}
+                <form action="{% url 'review' product.id %}" method="POST" class="form mb-1">
+                    <input type="hidden" name="product-id" value="{{ product.id}}" />
+                    {% csrf_token %}
+                    {% crispy form %}
+                    <div class="text center">
+                        <button type="submit" style="width: 23rem;" class="btn btn-dark">Submit</button>
+                    </div>
+                </form>
+                {% else %}
+                <p>Error: Product ID is missing or invalid</p>
+                {% endif %}
+                {% endif %}
+            </div>
+            <div class="card-body">
+                <br>
+                <h5><strong>Customer Reviews:</strong></h5>
+                <hr>
+                {% for review in reviews %}
+                <div class="reviews" style="padding: 10px;">
+                    <p class="font-weight-bold">
+                        <span class=" text-muted font-weight-normal">
+                            Wrote on: {{ review.created_on | date:"D, d M Y" }},
+                            {{ review.created_on | time:"H:ia" }}
+                        </span> 
+                    </p>
+                    "{{ review.review }}" - {{ review.name }}
+                    
+                </div><br><hr>
+                {% empty %}
+                <div>
+                    <p>No customer reviews yet for this product.</p>
+                    <span>Be the first to write a review</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
 {% endblock %} 
 
 {% block postloadjs %} 
