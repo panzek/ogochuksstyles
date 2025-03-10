@@ -63,15 +63,13 @@ def product_detail(request, product_id):
     """
     A view to render individual product details
     """
-    product = get_object_or_404(Product, id=product_id) # Ensures product exists
+    product = get_object_or_404(Product, id=product_id)  # Ensures product exists
     review_form = ReviewForm()  # initialise review form
 
     context = {
         'product': product,
         'form': review_form,  # pass review form to the template
     }
-
-    print(context) # Dubugging
 
     return render(request, 'products/product_detail.html', context)
 
@@ -82,7 +80,7 @@ def add_product(request):
 
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can add products')
-        return redirect(reverse('home')) 
+        return redirect(reverse('home'))
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
@@ -146,7 +144,6 @@ def delete_product(request, product_id):
 @login_required(login_url='/accounts/login/')
 def submit_review(request, product_id):
     """ A view to render the review contents page """
-    
     product = get_object_or_404(Product, id=product_id)  # Ensures product exists
     review = Review.objects.filter(product=product, approved=True)
     if request.method == 'POST':

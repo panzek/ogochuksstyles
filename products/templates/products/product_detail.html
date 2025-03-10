@@ -11,13 +11,15 @@
     </div>
 </div>
 {% endblock %} {% block content %}
+<!-- Product Detail -->
 <div class="container">
-    <div class="row">
-        <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
-            <div>
+    <div class="row d-flex justify-content-center mt-2 gx-1">
+        <div class="col-lg-4 text-center">
+            <!-- Product Image -->
+            <div class="card-body mt-4 p-2">
                 {% if product.image %}
                 <a href="{{ product.image.url }}" target="_blank">
-                    <img class="img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}" />
+                    <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}" />
                 </a>
                 {% else %}
                 <a href="">
@@ -26,10 +28,11 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="mb-5 mt-md-5">
+        <div class="col-lg-4 align-self-center bg-light">
+            <!-- Product Description -->
+            <div class="card-body mt-4 text-start">
                 <p class="mb-0 fs-6 product-name">{{ product.name }}</p>
-                <p class="mb-0 text-left fst-italic">€{{ product.price }}</p>
+                <p class="mb-0 fst-italic">€{{ product.price }}</p>
                 {% if product.category %}
                 <p class="small mt-1 mb-0">
                     <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}"> <i class="fas fa-tag mr-1" aria-hidden="true"></i>{{ product.category.friendly_name }} </a>
@@ -116,26 +119,31 @@
                                     <div class="text-center">
                                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                         <button type="submit" class="btn btn-dark rounded-1 btn-block text-uppercase mx-auto mt-2 w-100">
-                                            Add to Cart <i class="fas fa-shopping-cart ms-2" aria-hidden="true"></i>
+                                            <span class="icon">
+                                                <small>Add to Cart</small> <i class="fas fa-shopping-cart ms-2" aria-hidden="true"></i>
+                                            </span>
+                                            
                                         </button>
                                     </div>
                                 </form>
                             {% endif %}
                             </div>
-                            <div class="btn-group w-100 gap-2">
-                                <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-1 mt-2">
-                                    <span class="icon">
-                                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="text-uppercase">Keep Shopping</span>
-                                </a>
-                                <form action="" method="POST">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="product-id" value="{{ product.id}}" />
-                                    <a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-wishlist add-to-wishlist-color rounded-1 text-uppercase mt-2 btn-outline-dark" role="button" aria-pressed="true">
-                                        <i class="fa-solid fa-heart" aria-hidden="true"></i> Add to Wishlist
+                            <div class="text-center mb-5">
+                                <div class="btn-group gap-2" role="group">
+                                    <a href="{% url 'products' %}" class="btn btn-outline-dark rounded-1 mt-2">
+                                        <span class="icon">
+                                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="text-uppercase"><small>Keep Shopping</small></span>
                                     </a>
-                                </form>
+                                    <form action="" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="product-id" value="{{ product.id}}" />
+                                        <a href="{% url 'add_to_wishlist' product.id %}" class="btn btn-wishlist add-to-wishlist-color rounded-1 text-uppercase mt-2 btn-outline-dark" role="button" aria-pressed="true">
+                                            <i class="fa-solid fa-heart" aria-hidden="true"></i> <small>Add to Wishlist</small>
+                                        </a>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}" />
@@ -146,19 +154,48 @@
         </div>
     </div>
 </div>
-<!-- Review tab -->
+<!-- Horizontal Rule -->
+<div class="container text-center">
+    <div class="row">
+        <div class="col">
+            <hr>
+        </div>
+    </div>
+</div>
+<!-- Product Reviews -->
 <div class="container">
-    <div class="row d-flex justify-content-center">
-        <div class="col-12 col-md-6 text-center bg-light mt-2">
+    <div class="row d-flex justify-content-center mt-2 gx-1">
+        <div class="col-lg-4 text-center shadow rounded">
+            <div class="card-body mt-4 p-2">
+                <h5><strong>Customer Reviews:</strong></h5>
+                {% for review in reviews %}
+                <div class="reviews" style="padding: 10px;">
+                    <p class="font-weight-bold">
+                        <span class=" text-muted font-weight-normal">
+                            Wrote on: {{ review.created_on | date:"D, d M Y" }},
+                            {{ review.created_on | time:"H:ia" }}
+                        </span> 
+                    </p>
+                    "{{ review.review }}" - {{ review.name }}
+                    
+                </div><br><hr>
+                {% empty %}
+                <div>
+                    <span>No customer reviews yet for this product.</span>
+                    <p>Be the first to write a review</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-4 text-center shadow rounded">
             <!-- Reviews form -->
-            <div class="card-body mt-3">
+            <div class="card-body mt-4 p-2">
                 {% if reviewed %}
                 <div class="alert alert-success" role="alert">
                     {{ user.username }}, your review is awaiting approval
                 </div>
                 {% else %}
                 <h5><strong>Review this Product:</strong></h5>
-             
                 <span>Share your thoughts with other customers</span>
                 <p>Reviewing as: {{ user.username }}</p>
                 {% if product.id %}
@@ -174,28 +211,6 @@
                 <p>Error: Product ID is missing or invalid</p>
                 {% endif %}
                 {% endif %}
-            </div>
-            <div class="card-body">
-                <br>
-                <h5><strong>Customer Reviews:</strong></h5>
-                <hr>
-                {% for review in reviews %}
-                <div class="reviews" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        <span class=" text-muted font-weight-normal">
-                            Wrote on: {{ review.created_on | date:"D, d M Y" }},
-                            {{ review.created_on | time:"H:ia" }}
-                        </span> 
-                    </p>
-                    "{{ review.review }}" - {{ review.name }}
-                    
-                </div><br><hr>
-                {% empty %}
-                <div>
-                    <p>No customer reviews yet for this product.</p>
-                    <span>Be the first to write a review</span>
-                </div>
-                {% endfor %}
             </div>
         </div>
     </div>
