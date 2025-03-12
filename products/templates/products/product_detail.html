@@ -19,11 +19,11 @@
             <div class="card-body mt-4 p-2">
                 {% if product.image %}
                 <a href="{{ product.image.url }}" target="_blank">
-                    <img class="img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}" />
+                    <img class="card-img-top img-fluid rounded" src="{{ product.image.url }}" alt="{{ product.name }}" />
                 </a>
                 {% else %}
                 <a href="">
-                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" />
+                    <img class="card-img-top img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}" />
                 </a>
                 {% endif %}
             </div>
@@ -37,11 +37,11 @@
                 <p class="small mt-1 mb-0">
                     <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}"> <i class="fas fa-tag mr-1" aria-hidden="true"></i>{{ product.category.friendly_name }} </a>
                 </p>
-                {% endif %} {% if product.rating %}
-                <small class="text-muted"><i class="fas fa-star mr-1" aria-hidden="true"></i>{{ product.rating }} / 5</small>
+                {% endif %} {% for review in reviews %}{% if review.rating %}
+                <small class="text-muted"><i class="fas fa-star mr-1" aria-hidden="true"></i>{{ review.rating }} / 5</small>
                 {% else %}
                 <small class="text-muted">No Rating</small>
-                {% endif %} {% if request.user.is_superuser %}
+                {% endif %}{% endfor %} {% if request.user.is_superuser %}
                 <a href="{% url 'edit_product' product.id %}" class="edit-btn">Edit</a>
                 <!-- Delete Products Button trigger modal -->
                 <a type="text" href="{{ product.id }}" class="text-danger" data-toggle="modal" data-target="#product_{{ product.id }}" aria-label="Delete this product" >
@@ -171,13 +171,14 @@
                 {% for review in reviews %}
                 <div class="reviews" style="padding: 10px;">
                     <p class="font-weight-bold">
-                        <span class=" text-muted font-weight-normal">
-                            Wrote on: {{ review.created_on | date:"D, d M Y" }},
-                            {{ review.created_on | time:"H:ia" }}
-                        </span> 
+                        {{ review.title }} - Rating: 
+                        {% if review.rating %}{{ review.rating }}{% else %}N/A{% endif %}
+                    </p>
+                    <p class="text-muted font-weight-normal">
+                        Wrote on: {{ review.created_on|date:"D, d M Y" }},
+                        {{ review.created_on|time:"H:ia" }}
                     </p>
                     "{{ review.review }}" - {{ review.name }}
-                    
                 </div><br><hr>
                 {% empty %}
                 <div>
@@ -188,28 +189,28 @@
             </div>
         </div>
         <div class="col-lg-4 text-center shadow rounded">
-            <!-- Reviews form -->
+            <!-- Reviews Form -->
             <div class="card-body mt-4 p-2">
-                {% if reviewed %}
-                <div class="alert alert-success" role="alert">
-                    {{ user.username }}, your review is awaiting approval
-                </div>
-                {% else %}
-                <h5><strong>Review this Product:</strong></h5>
-                <span>Share your thoughts with other customers</span>
-                <p>Reviewing as: {{ user.username }}</p>
-                {% if product.id %}
-                <form action="{% url 'review' product.id %}" method="POST" class="form mb-1">
-                    <input type="hidden" name="product-id" value="{{ product.id}}" />
-                    {% csrf_token %}
-                    {% crispy form %}
-                    <div class="text center">
-                        <button type="submit" style="width: 23rem;" class="btn btn-dark">Submit</button>
+                {% if user.is_authenticated %}
+                    {% if form %}
+                    <h5><strong>Review this Product:</strong></h5>
+                    <span>Share your thoughts with other customers</span>
+                    <p>Reviewing as: {{ user.username }}</p>
+                    <form action="{% url 'review' product.id %}" method="POST" class="form mb-1">
+                        {% csrf_token %}
+                        <input type="hidden" name="product-id" value="{{ product.id }}" />
+                        {% crispy form %}
+                        <div class="text-center">
+                            <button type="submit" style="width: 23rem;" class="btn btn-dark">Submit</button>
+                        </div>
+                    </form>
+                    {% else %}
+                    <div class="alert alert-success" role="alert">
+                        {{ user.username }}, your review is awaiting approval
                     </div>
-                </form>
+                    {% endif %}
                 {% else %}
-                <p>Error: Product ID is missing or invalid</p>
-                {% endif %}
+                <p>Please <a href="{% url 'account_login' %}">log in</a> to leave a review.</p>
                 {% endif %}
             </div>
         </div>

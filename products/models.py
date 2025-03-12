@@ -4,7 +4,6 @@ from django_resized import ResizedImageField
 
 
 class Category(models.Model):
-
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -55,12 +54,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
 class Review(models.Model):
     """
     Review Model
     """
-
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     user = models.ForeignKey(
             User,
@@ -68,7 +65,6 @@ class Review(models.Model):
             blank=False,
             on_delete=models.CASCADE
         )
-
     name = models.CharField(max_length=100, null=False, blank=False)
     title = models.CharField(max_length=250, null=False, blank=False)
     review = models.TextField(max_length=250, null=False, blank=False)
@@ -79,9 +75,9 @@ class Review(models.Model):
             blank=True
         )
     ip = models.GenericIPAddressField(
-            protocol="IPv4", 
-            null=True, 
-            blank=True, 
+            protocol="IPv4",
+            null=True,
+            blank=True,
             default="0.0.0.0"
         )
     status = models.BooleanField(default=True)
@@ -90,6 +86,7 @@ class Review(models.Model):
     approved = models.BooleanField(default=False, blank=True)
 
     class Meta:
+        unique_together = ('user', 'product')  # Ensures only one review per user-product pair
         ordering = ["created_on"]
 
     def __str__(self):

@@ -60,17 +60,22 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """
-    A view to render individual product details
-    """
-    product = get_object_or_404(Product, id=product_id)  # Ensures product exists
-    review_form = ReviewForm()  # initialise review form
+    """A view to render the product detail page"""
+    product = get_object_or_404(Product, id=product_id)
+    reviews = Review.objects.filter(product=product, approved=True)  # Only show approved reviews
+    form = None
+
+    if request.user.is_authenticated:
+        existing_review = Review.objects.filter(user=request.user, product=product).first()
+        if not existing_review:
+            form = ReviewForm()
+        # If a review exists, we’ll use it to show the "awaiting approval" message in the template
 
     context = {
         'product': product,
-        'form': review_form,  # pass review form to the template
+        'reviews': reviews,
+        'form': form,
     }
-
     return render(request, 'products/product_detail.html', context)
 
 
@@ -141,31 +146,37 @@ def delete_product(request, product_id):
     return redirect('/')
 
 
-@login_required(login_url='/accounts/login/')
 def submit_review(request, product_id):
-    """ A view to render the review contents page """
-    product = get_object_or_404(Product, id=product_id)  # Ensures product exists
-    review = Review.objects.filter(product=product, approved=True)
-    if request.method == 'POST':
-        review_form = ReviewForm(request.POST)
-        if review_form.is_valid():
-            review_form.instance.name = request.user.username
-            review = review_form.save(commit=False)
-            review.product = product
+    """A view to handle submitting or updating a product review"""
+    product = get_object_or_404(Product, id=product_id)
+    url = request.META.get("HTTP_REFERER", reverse('product_detail', args=[product_id]))
 
-            review.save()
-            messages.success(
-                request, "Your review successfully submitted, but awaiting approval. Thank You!"
-                )
-            return redirect('product_detail', product_id=product.id)
-        else:
-            messages.error(request, 'Failed to add review. Please ensure the form is valid.')
-    else:
-        review_form = ReviewForm()
+    if request.method == "POST":
+        try:
+            # Check for an existing review (approved or not, due to unique_together)
+            review = Review.objects.get(user=request.user, product=product)
+            # Update existing review
+            review_form = ReviewForm(request.POST, instance=review)
+            if review_form.is_valid():
+                review_form.save()
+                messages.success(request, "Your review has been successfully updated")
+                return redirect(url)
+            else:
+                messages.error(request, "Failed to update review. Please ensure the form is valid.")
+        except Review.DoesNotExist:
+            # Create a new review
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.user = request.user
+                review.product = product
+                review.name = request.user.username  # Set name to username
+                review.ip = request.META.get('REMOTE_ADDR', '0.0.0.0')
+                review.save()
+                messages.success(request, "Your review has been submitted and is awaiting approval. Thank you!")
+                return redirect('product_detail', product_id=product.id)
+            else:
+                messages.error(request, "Failed to add review. Please ensure the form is valid.")
 
-    context = {
-        'form': review_form,
-        'product': product,
-    }
-
-    return render(request, "products/product_detail.html", context)
+    # For GET or invalid form, redirect to product_detail
+    return redirect('product_detail', product_id=product.id)

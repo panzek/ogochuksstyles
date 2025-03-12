@@ -35,10 +35,9 @@ class ReviewForm(forms.ModelForm):
 
     class Meta:
         model = Review
-        fields = ('name', 'title', 'review', 'rating')
+        fields = ('title', 'review', 'rating')
 
         labels = {
-            'name': 'Enter your full name',
             'title': 'Enter review title', 
             'review': 'Write your review', 
             'rating': 'Rate the product',
@@ -47,9 +46,8 @@ class ReviewForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_tag = False  # Prevents crispy form from rending form tags
+        # self.helper.form_tag = False  # Prevents crispy form from rending form tags
         self.helper.layout = Layout(
-            FloatingField("name"),
             FloatingField("title"),
             FloatingField("review"),
             FloatingField("rating"),

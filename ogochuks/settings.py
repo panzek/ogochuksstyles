@@ -131,10 +131,6 @@ TEMPLATES = [
                     'cart.contexts.cart_contents',
                     'home.context_processors.current_year',
                 ],
-                'builtins': [
-                    'crispy_forms.templatetags.crispy_forms_tags',
-                    'crispy_forms.templatetags.crispy_forms_field',
-                ]
             },
     },
 ]
