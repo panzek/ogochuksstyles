@@ -303,6 +303,24 @@ p.mb-0.fs-6.product-name:hover {
     transition: color 0.5s ease;
 }
 
+/* Star rating */
+.star-rating .fa-star {
+    color:#000;
+    cursor: pointer;
+}
+
+.star-rating .fa-star.checked {
+    color: #f39c12;
+}
+
+.fa-star.checked {
+    color: #f39c12;
+}
+
+.fa-star {
+    color: #000;
+}
+
 /* Footer */
 footer {
     display: flex;

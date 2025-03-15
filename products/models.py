@@ -54,6 +54,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class Review(models.Model):
     """
     Review Model
@@ -71,8 +72,7 @@ class Review(models.Model):
     rating = models.DecimalField(
             max_digits=6,
             decimal_places=2,
-            null=True,
-            blank=True
+            default=False
         )
     ip = models.GenericIPAddressField(
             protocol="IPv4",
@@ -91,4 +91,3 @@ class Review(models.Model):
 
     def __str__(self):
         return f"Review {self.review} by {self.name}"
-

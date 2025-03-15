@@ -7,8 +7,9 @@ from .models import Product, Category, Review
 from .forms import ProductForm, ReviewForm
 
 
+# All Products View
 def all_products(request):
-    """ 
+    """
     A view to render all products in our store
     """
 
@@ -59,17 +60,17 @@ def all_products(request):
     return render(request, 'products/products.html', context)
 
 
+# Product Detail View
 def product_detail(request, product_id):
     """A view to render the product detail page"""
     product = get_object_or_404(Product, id=product_id)
-    reviews = Review.objects.filter(product=product, approved=True)  # Only show approved reviews
+    reviews = Review.objects.filter(product=product, approved=True)
     form = None
 
     if request.user.is_authenticated:
         existing_review = Review.objects.filter(user=request.user, product=product).first()
         if not existing_review:
             form = ReviewForm()
-        # If a review exists, we’ll use it to show the "awaiting approval" message in the template
 
     context = {
         'product': product,
@@ -78,7 +79,7 @@ def product_detail(request, product_id):
     }
     return render(request, 'products/product_detail.html', context)
 
-
+# Add Product View
 @login_required(login_url='/accounts/login/')
 def add_product(request):
     """ A view for store owner to add products to the store """
@@ -104,7 +105,7 @@ def add_product(request):
 
     return render(request, template, context)
 
-
+# Edit Product View
 @login_required(login_url='/accounts/login/')
 def edit_product(request, product_id):
     """ A view for store owner to add products to the store """
@@ -135,7 +136,7 @@ def edit_product(request, product_id):
 
     return render(request, template, context)
 
-
+# Delete Product View
 @login_required(login_url='/accounts/login/')
 def delete_product(request, product_id):
     """ A view for store owner to delete products in the store """
@@ -145,38 +146,39 @@ def delete_product(request, product_id):
     messages.success(request, 'Product successfully deleted!')
     return redirect('/')
 
-
+# Submit Review View
+@login_required(login_url='/accounts/login/')
 def submit_review(request, product_id):
-    """A view to handle submitting or updating a product review"""
+    """A view to render the submit review page"""
     product = get_object_or_404(Product, id=product_id)
     url = request.META.get("HTTP_REFERER", reverse('product_detail', args=[product_id]))
 
     if request.method == "POST":
         try:
-            # Check for an existing review (approved or not, due to unique_together)
             review = Review.objects.get(user=request.user, product=product)
-            # Update existing review
             review_form = ReviewForm(request.POST, instance=review)
             if review_form.is_valid():
                 review_form.save()
                 messages.success(request, "Your review has been successfully updated")
                 return redirect(url)
-            else:
-                messages.error(request, "Failed to update review. Please ensure the form is valid.")
         except Review.DoesNotExist:
-            # Create a new review
             review_form = ReviewForm(request.POST)
             if review_form.is_valid():
                 review = review_form.save(commit=False)
                 review.user = request.user
                 review.product = product
-                review.name = request.user.username  # Set name to username
+                review.name = request.user.username
                 review.ip = request.META.get('REMOTE_ADDR', '0.0.0.0')
                 review.save()
                 messages.success(request, "Your review has been submitted and is awaiting approval. Thank you!")
                 return redirect('product_detail', product_id=product.id)
-            else:
-                messages.error(request, "Failed to add review. Please ensure the form is valid.")
 
-    # For GET or invalid form, redirect to product_detail
+        reviews = Review.objects.filter(product=product, approved=True)
+        context = {
+            'product': product,
+            'reviews': reviews,
+            'form': review_form,  
+        }
+        return render(request, 'products/product_detail.html', context)
+
     return redirect('product_detail', product_id=product.id)
