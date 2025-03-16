@@ -321,6 +321,19 @@ p.mb-0.fs-6.product-name:hover {
     color: #000;
 }
 
+/* Star rating - alert appearance */
+.rating-alert {
+    margin-bottom: 15px;
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.rating-alert .btn-close {
+    padding: 0.5rem;
+}
+
+
 /* Footer */
 footer {
     display: flex;

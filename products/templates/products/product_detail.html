@@ -40,16 +40,13 @@
                 {% endif %} {% for review in reviews %}{% if review.rating %}
                 <small class="text-muted">
                     <!-- Display stars based on rating -->
-                    {% with rating_int=review.rating|floatformat:0|add:0 %}
-                        {% for i in "12345" %}
-                            {% if forloop.counter <= rating_int %}
-                                <span class="fas fa-star fa-fw checked"></span>
-                            {% else %}
-                                <span class="fas fa-star fa-fw"></span>
-                            {% endif %}
-                        {% endfor %}
-                        {{ review.rating }} / 5
-                    {% endwith %}
+                    {% for i in "12345" %}
+                        {% if forloop.counter <= review.rating|floatformat:0 %}
+                            <span class="fas fa-star fa-fw checked"></span>
+                        {% else %}
+                            <span class="fas fa-star fa-fw"></span>
+                        {% endif %}
+                    {% endfor %}
                 </small>
                 {% else %}
                 <small class="text-muted">No Rating</small>
@@ -186,19 +183,16 @@
                     <p class="font-weight-bold">
                         {{ review.title }}
                     </p>
-                    <span class="text-muted">
+                    <small class="text-muted">
                         <!-- Display stars based on rating -->
-                        {% with rating_int=review.rating|floatformat:0|add:0 %}
-                            {% for i in "12345" %}
-                                {% if forloop.counter <= rating_int %}
-                                    <span class="fas fa-star fa-fw checked"></span>
-                                {% else %}
-                                    <span class="fas fa-star fa-fw"></span>
-                                {% endif %}
-                            {% endfor %}
-                            {{ review.rating }} / 5
-                        {% endwith %}
-                    </span>
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= review.rating|floatformat:0 %}
+                                <span class="fas fa-star fa-fw checked"></span>
+                            {% else %}
+                                <span class="fas fa-star fa-fw"></span>
+                            {% endif %}
+                        {% endfor %}
+                    </small>
                     <p class="text-muted font-weight-normal">
                         Wrote on: {{ review.created_on|date:"D, d M Y" }},
                         {{ review.created_on|time:"H:ia" }}

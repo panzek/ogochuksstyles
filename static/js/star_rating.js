@@ -1,11 +1,49 @@
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form.form');
-    const stars = form ? form.querySelectorAll('.star-rating .fa-star') : [];
-    const ratingInput = form ? form.querySelector('#rating') : null;
-
-    if (!form || !stars.length || !ratingInput) {
-        console.error('Star rating elements not found', { form: !!form, stars: stars.length, ratingInput: !!ratingInput });
+    
+    // If no form exists, exit silently
+    if (!form) {
+        console.log('No review form found on this page.');
         return;
+    }
+
+    const stars = form.querySelectorAll('.star-rating .fa-star');
+    const ratingInput = form.querySelector('#rating');
+
+    if (!stars.length || !ratingInput) {
+        console.error('Star rating elements not found within form:', {
+            stars: stars.length,
+            ratingInput: !!ratingInput
+        });
+        return;
+    }
+
+    // Function to show Bootstrap alert
+    function showRatingAlert(message) {
+        // Remove any existing alert
+        const existingAlert = form.querySelector('.rating-alert');
+        if (existingAlert) {
+            existingAlert.remove();
+        }
+
+        // Create new Bootstrap alert
+        const alertDiv = document.createElement('div');
+        alertDiv.className = 'alert alert-danger alert-dismissible fade show rating-alert';
+        alertDiv.role = 'alert';
+        alertDiv.innerHTML = `
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        `;
+
+        // Insert alert before the star-rating div
+        const starRatingDiv = form.querySelector('.star-rating');
+        form.prepend(alertDiv, starRatingDiv);
+        // form.insertBefore(alertDiv, starRatingDiv);
+
+        // Auto-dismiss after 5 seconds (optional)
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 5000);
     }
 
     stars.forEach(star => {
@@ -35,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
     form.addEventListener('submit', function (e) {
         if (ratingInput.value === "0" || ratingInput.value === "") {
             e.preventDefault();
-            alert('Please select a rating by clicking the stars.'); 
+            showRatingAlert('Please select a rating by clicking the stars.');
         }
     });
 });
