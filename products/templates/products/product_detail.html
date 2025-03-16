@@ -40,13 +40,15 @@
                 {% endif %} {% for review in reviews %}{% if review.rating %}
                 <small class="text-muted">
                     <!-- Display stars based on rating -->
-                    {% for i in "12345" %}
-                        {% if forloop.counter <= review.rating|floatformat:0 %}
-                            <span class="fas fa-star fa-fw checked"></span>
-                        {% else %}
-                            <span class="fas fa-star fa-fw"></span>
-                        {% endif %}
-                    {% endfor %}
+                    {% with rating_int=review.rating|floatformat:0|add:0 %}
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= rating_int %}
+                                <span class="fas fa-star fa-fw checked"></span>
+                            {% else %}
+                                <span class="fas fa-star fa-fw"></span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
                 </small>
                 {% else %}
                 <small class="text-muted">No Rating</small>
@@ -185,13 +187,15 @@
                     </p>
                     <small class="text-muted">
                         <!-- Display stars based on rating -->
-                        {% for i in "12345" %}
-                            {% if forloop.counter <= review.rating|floatformat:0 %}
-                                <span class="fas fa-star fa-fw checked"></span>
-                            {% else %}
-                                <span class="fas fa-star fa-fw"></span>
-                            {% endif %}
-                        {% endfor %}
+                        {% with rating_int=review.rating|floatformat:0|add:0 %}
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= rating_int %}
+                                    <span class="fas fa-star fa-fw checked"></span>
+                                {% else %}
+                                    <span class="fas fa-star fa-fw"></span>
+                                {% endif %}
+                            {% endfor %}
+                        {% endwith %}
                     </small>
                     <p class="text-muted font-weight-normal">
                         Wrote on: {{ review.created_on|date:"D, d M Y" }},
