@@ -44,11 +44,12 @@ class ReviewForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['rating'].required = True
+        self.fields["review"].widget.attrs["rows"] = 5
         self.helper = FormHelper()
         self.helper.form_tag = False
         self.helper.form_method = 'post'
         self.helper.layout = Layout(
             FloatingField('title'),
-            FloatingField('review'),
+            FloatingField('review',),
             Field('rating'),
         )

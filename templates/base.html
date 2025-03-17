@@ -103,20 +103,7 @@
                 });
             });
         </script>
-
-        <!-- navbar scroll changes colour  -->
-        <script>
-            const navElem = document.querySelector('.navbar');
-            window.addEventListener('scroll', () => {
-
-                if (window.scrollY >= 56) {
-                    navElem.classList.add('navbar-scrolled')
-                } else if (window.scrollY < 56) {
-                    navElem.classList.remove('navbar-scrolled');
-                }
-            });
-
-        </script>
+ 
         {% endblock %}
     </body>
 </html>

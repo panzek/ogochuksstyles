@@ -168,6 +168,22 @@ h1, h2, h3, h4, h5, h6 {
     width: 30%;
 }
 
+/* Verify Your E-mail Address */
+.verify_email_divider {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    padding: 0 12px;
+}
+
+.verify_email_divider:before,
+.verify_email_divider:after {
+    background-color: lightgray;
+    content: "";
+    height: 1px;
+    width: 10%;
+}
+
 /* End forms  */
 
 .unauthorise-user {
@@ -331,6 +347,12 @@ p.mb-0.fs-6.product-name:hover {
 
 .rating-alert .btn-close {
     padding: 0.5rem;
+}
+
+/* Review field - ensures rows attribute translates to visible height */
+/* With this, the attribute is applied but doesn't show in template */
+textarea#id_review {
+    height: auto;
 }
 
 
