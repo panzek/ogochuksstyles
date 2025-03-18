@@ -75,20 +75,25 @@
                             <i class="fas fa-tag mr-1" aria-hidden="true"></i>{{ product.category.friendly_name }}
                         </a>
                     </p>
-                {% endif %}
-                {% if product.rating %}
-                    {% with rating_int=review.rating|floatformat:0|add:0 %}
-                        {% for i in "12345" %}
-                            {% if forloop.counter <= rating_int %}
-                                <span class="fas fa-star fa-fw checked"></span>
-                            {% else %}
-                                <span class="fas fa-star fa-fw"></span>
-                            {% endif %}
-                        {% endfor %}
-                    {% endwith %}
-                {% else %}
-                    <small class="text-muted">No Rating</small>
-                {% endif %}
+                {% endif %} 
+                <!-- Display individual review star ratings -->
+                {% for review in product.review_set.all %}
+                    {% if review.approved %}
+                        <div class="review-stars" >
+                            {% with rating_int=review.rating|floatformat:0|add:0 %}
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= rating_int %}
+                                        <span class="fas fa-star fa-sm fa-fw checked"></span>
+                                    {% else %}
+                                        <span class="fas fa-star fa-sm fa-fw"></span>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endwith %}
+                        </div>
+                    {% endif %}  
+                {% empty %}
+                    <small class="text-muted">No reviews yet</small>
+                {% endfor %}
                 {% if request.user.is_superuser %}
                     <a href="{% url 'edit_product' product.id %}" class="edit-link-color">Edit</a> |
                     <!-- Delete Products Button trigger modal -->

@@ -350,7 +350,7 @@ p.mb-0.fs-6.product-name:hover {
 }
 
 /* Review field - ensures rows attribute translates to visible height */
-/* With this, the attribute is applied but doesn't show in template */
+/* Without this, the attribute is applied but doesn't show in template */
 textarea#id_review {
     height: auto;
 }

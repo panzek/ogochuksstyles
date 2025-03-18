@@ -13,7 +13,7 @@ def all_products(request):
     A view to render all products in our store
     """
 
-    products = Product.objects.all()
+    products = Product.objects.prefetch_related('review_set').all()
     query = None
     categories = None
     sort = None
