@@ -31,7 +31,7 @@
         <div class="col-lg-4 align-self-center bg-light">
             <!-- Product Description -->
             <div class="card-body mt-4 ">
-                <p class="mb-0 fs-6 product-name">{{ product.name }}</p>
+                <p class="mb-0 fs-6 product-name"><strong>{{ product.name }}</strong></p>
                 <p class="mb-0 fst-italic">€{{ product.price }}</p>
                 {% if product.category %}
                 <p class="small mt-1 mb-0">
@@ -177,32 +177,55 @@
 <div class="container">
     <div class="row d-flex justify-content-center mt-2 gx-1">
         <!-- Customer Reviews Section -->
-        <div class="col-lg-4 text-center shadow rounded">
+        <div class="col-lg-4 shadow rounded bg-light">
             <div class="card-body mt-4 p-2">
-                <h5><strong>Customer Reviews:</strong></h5>
+                <h5><strong>Customer Reviews</strong></h5>
+                <small class="text-muted">
+                    <!-- Display Averate Rating stars -->
+                    {% with avg_int=avg_rating|floatformat:0|add:0 %}
+                        {% for i in "12345" %}
+                            {% if forloop.counter <= avg_int %}
+                                <span class="fas fa-star fa-fw checked"></span>
+                            {% else %}
+                                <span class="fas fa-star fa-fw"></span>
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                    {% if avg_rating %}
+                        {{ reviews.count }} reviews
+                        {% else %} (No reviews yet)
+                        {% endif %}
+                </small>
+                <hr>
                 {% for review in reviews %}
-                <div class="reviews" style="padding: 10px;">
-                    <p class="font-weight-bold">
-                        {{ review.title }}
-                    </p>
-                    <small class="text-muted">
-                        <!-- Display stars based on rating -->
-                        {% with rating_int=review.rating|floatformat:0|add:0 %}
-                            {% for i in "12345" %}
-                                {% if forloop.counter <= rating_int %}
-                                    <span class="fas fa-star fa-fw checked"></span>
-                                {% else %}
-                                    <span class="fas fa-star fa-fw"></span>
-                                {% endif %}
-                            {% endfor %}
-                        {% endwith %}
-                    </small>
-                    <p class="text-muted font-weight-normal">
-                        Wrote on: {{ review.created_on|date:"D, d M Y" }},
-                        {{ review.created_on|time:"H:ia" }}
-                    </p>
-                    "{{ review.review }}" - {{ review.name }}
-                </div><br><hr>
+                <div class="card w-100" >
+                    <div class="card-body text-left">
+                        <div>
+                            {{ review.counter }}
+                            <span class="text-muted font-weight-normal">
+                                {{ review.created_on|date:"D, d M Y" }},
+                                {{ review.created_on|time:"H:ia" }}
+                            </span>
+                        </div>
+                        <div><strong>{{ review.name | title }}</strong></div>
+                        <small class="text-muted">
+                            <!-- Display stars based on rating -->
+                            {% with rating_int=review.rating|floatformat:0|add:0 %}
+                                {% for i in "12345" %}
+                                    {% if forloop.counter <= rating_int %}
+                                        <span class="fas fa-star fa-fw checked"></span>
+                                    {% else %}
+                                        <span class="fas fa-star fa-fw"></span>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endwith %}
+                        </small>
+                        <div class="mt-3">
+                            <strong>{{ review.title }}</strong>
+                        </div> 
+                        <small class="card-text">{{ review.review }}</small>
+                    </div>
+                </div>
                 {% empty %}
                 <div>
                     <span>No customer reviews yet for this product.</span>
