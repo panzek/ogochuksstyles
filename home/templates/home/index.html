@@ -15,11 +15,13 @@
       </video>
     </div>
     <!-- Overlay Content -->
-    <div class="card-img-overlay d-flex justify-content-center align-items-center align-self-md-center">
+    <div class="card-img-overlay d-flex justify-content-center align-items-center align-self-md-end">
       <div class="text-center text-white">
-        <h1 class="text-uppercase">
-            Ogochuks Styles
-        </h1>
+        <div>
+          <a class="navbar-brand text-uppercase text-white w-25" href="{% url 'home' %}">
+            <img src="{{ MEDIA_URL }}ogochuks_logo.png" class="img-fluid" alt="Ogochuksstyles logo">
+          </a>
+        </div>
         <span class="haute-couture my-5">
           Dublin | Ireland
         </span>
@@ -31,7 +33,6 @@
       </div>
     </div>
   </div>
-
   <!-- Our Services Section -->
   <div class="container col-sm-12 col-md-6 text-center mt-5 pb-5 ">
     <h3 class="text-uppercase text-muted">Our Services</h3> 
@@ -56,47 +57,9 @@
       </div>
     </div>
   </div>  
-
   <!-- Our awesome caps Section -->
   <div class="container mt-1 pb-0">
-      <h3 class="text-uppercase text-center">Satin-Lined Skull Caps</h3> 
-      <div class="row">
-        <div class="col-12 col-lg-4">
-            <div class="text-lg-start">
-              <p>
-                Our Satin-Lined Skull Caps are carefully designed to provide extra protection for your hair 
-                with our satin lining. The satin material reduces friction, minimises breakage, retains 
-                hair's moisture, keeping it healthier and more manageable.
-              </p>
-              <p>
-                Our skull caps combine trending fashion designs with practicality. Ever have your hair ruined 
-                after a footbal session in the rain? Frustrated when your hair begins to frizz just days after 
-                styling? These cap let you look your best without compromising your haircare routine.
-              </p>
-              <p>
-                Perhaps you're tired of walking around in a traditional bonnet? These caps offer the perfect 
-                alternative for a polished, stylish appearance, whether you're training at Astro, running 
-                in Santry or heading out to meet some friends.
-              </p>  
-              <div class="card-text text-center">
-                <h5>
-                  Remember, Ogochuks styles you!
-                </h5>
-                <a href="{% url 'products' %}" class="btn home-beauty-btn btn-dark text-uppercase text-center">
-                  <small class="text-body-secondary">Buy Now</small>
-                </a>
-              </div>
-              <hr class="divider bg-lightgray">
-            </div>
-        </div>
-        <div class="col-12 col-lg-8 mx-auto pb-2">
-          <div>
-            <img src="{{ MEDIA_URL }}ogochuksstyles_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
-          </div>
-        </div>
-      </div>
-  </div>
-  <div class="container">
+    <h3 class="text-uppercase text-center"><mark>Satin-Lined Skull Caps</mark></h3> 
     <div class="row g-1">
       <!-- with col-md-3 each image takes up one-fourth of the width of the screen -->
       <div class="col-6 col-md-3">
@@ -111,9 +74,23 @@
       <div class="col-6 col-md-3">
         <img src="{{ MEDIA_URL }}ogochuksstyles_cap4.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
       </div>
+      <div class="col-12 col-md-3 mx-auto text-center mt-3">
+        <p>
+          <a href="{% url 'products' %}" aria-label="Go to all products page"><strong>Our Satin-Lined 
+          Skull Caps</strong></a> are carefully designed to provide extra protection for your hair. 
+          The satin material reduces friction, minimises breakage, retains 
+          hair's moisture, keeping it healthier and more manageable.
+        </p>
+        <h5>
+          Remember, Ogochuks styles you!
+        </h5>
+        <a href="{% url 'products' %}" class="btn home-beauty-btn btn-dark text-uppercase text-center">
+          <small class="text-body-secondary">Buy Now</small>
+        </a>
+      </div>
+      <hr class="divider bg-lightgray">
     </div>
   </div> 
-  
   <!-- Ogochuks Styles Section -->
   <div class="container-fluid bg-light"> 
     <div class="card-group g-2 mt-5">
@@ -173,44 +150,99 @@
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-    <div class="col-md-6 text-center mx-auto mt-4">
+  </div>
+</div>
+<div class="container">
+  <div class="row d-flex justify-content-center gx-1">
+    <!-- Things to know before your appointment -->
+    <div class="col-lg-4 shadow-sm rounded">
+      <div class="card-body mt-2 p-2">
+          <h3 class="card-title text-center mb-4">
+            <strong><mark>Things to know <br> before your appointment</mark></strong>
+          </h3>
+          <div class="text-center">
+            <figure>
+              <a class="navbar-brand text-uppercase text-white text-center" href="{% url 'home' %}">
+                  <img src="{{ MEDIA_URL }}ogochuks_logo_black.png" class="img-fluid" alt="Ogochuksstyles logo">
+              </a>
+            </figure>
+          </div>
+          <div class="card w-100 border-0 text-left">
+              <div>
+                <ul>
+                  <li>
+                    For a hair color <a 
+                    href="https://ogochuksstyles.as.me/schedule.php" 
+                    target="_blank" 
+                    rel="noopener" 
+                    aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)">
+                    appointment
+                  </a>, it's best to arrive with your hair dry and shampooed.
+                  </li>
+                  <li>
+                    Don't use too many hair <a href="{% url 'products' %}">products</a> such as styling 
+                    gels or mousses on the same day you want to get your hair done.
+                  </li>
+                  <li>
+                    Do not come with your hair tangled. I must be able to come through your hair freely. 
+                    Failure for you to be complaint will result in your being sent home. 
+                  </li>
+                </ul>
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- Booking Policies -->
+    <div class="col-lg-4 shadow-sm rounded">
+      <div class="card-body mt-2 p-2">
+        <h3 class="card-title text-center mb-5"><strong><mark>Booking Policies</mark></strong></h3>
+        <div class="card w-100 border-0 text-left">
+            <div class="row">
+              <div class="col-6 col-sm-6 text-center">
+                <i class="fa-solid fa-money-check-dollar fa-3x"></i>
+                <h4>Payment</h4> 
+                <p>
+                  We accept payments in Revolution & Cash. Bring correct change. 
+                  After Hours are additional €10.
+                </p>
+              </div>
+              <div class="col-6 col-sm-6 text-center">
+                <i class="fa-solid fa-money-bill-transfer fa-3x"></i>
+                <h4>Deposit</h4>
+                <p>
+                  A €10 non-refundable deposit is due at same time of your booking. 
+                  How to pay is sent alone with confirmation email
+                </p>
+              </div>
+              <div class="col-6 col-sm-6 text-center">
+                <i class="fa-solid fa-clock fa-3x"></i> 
+                <h4>Late Policy</h4>
+                <p>The 15-minute grace period, there will be €10 late fee. 
+                  After 20 minutes is considered as no-shows.
+                </p>
+              </div>
+              <div class="col-6 col-sm-6 text-center">
+                <i class="fa-solid fa-kit-medical fa-3x"></i>
+                <h4>Cancellations</h4>
+                <p>You may cancel at least 24 hours in advance</p>
+              </div>    
+            </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  <div class="col-md-6 text-center mx-auto mt-3">
       <!-- Add Schedule Appointment button  -->
       <a 
         href="https://ogochuksstyles.as.me/schedule.php" 
         target="_blank" 
         rel="noopener" 
         aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)" 
-        class="btn btn-dark text-uppercase">
-        Schedule An Appointment
+        class="btn btn-dark text-uppercase w-100">Schedule An Appointment
       </a>
   </div>
-  </div>
-  
-  <!-- About Us  -->
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-12 col-md-6 mx-auto"> 
-        <div class="col-12 text-lg-center mt-5">
-          <div>
-            <h4 class="text-uppercase" id="about" ><mark>About Us</mark></h4>
-          </div>
-        </div>
-        <p>
-          After years of providing  services in the hair industry, we have expanded into manufacturing a 
-          <strong>Satin-Lined Skull Cap.</strong> This fashionable and popular headwear aids in creating 
-          a <strong>protective layer</strong> to maintain your hairstyle. 
-        </p>
-        <p>
-          The Satin Lining allows your hair to retain it's <strong>moisture</strong> and prevents <strong>damage</strong> 
-          due to its waterproof qualities, perfect for those in sports and seeking both style and hair protection... more
-          <a href="{% url 'about' %}" aria-label="Go to About Us page"><strong>About Us</strong></a>
-        </p>
-        <hr class="divider bg-lightgray">
-      </div>
-    </div>
-  </div>
 </div>
-
 <!-- navbar scroll changes colour  -->
 <script>
   const navElem = document.querySelector('.navbar');
