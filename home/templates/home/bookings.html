@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} How to Shop on Ogochuks Styles  | Ogochuks Styles  {% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %} 
+
+{% block content %}
+<div class="container-fluid py-2">
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto text-center">
+            <hr>
+            <h1 class="mb-4">Booking Appointments</h1>
+            <hr class="mb-3">
+        </div>  
+    </div>  
+</div>
+<div class="container mb-5">
+    <div class="row d-flex justify-content-center gx-1">
+      <!-- Things to know before your appointment -->
+      <div class="col-lg-4 shadow-sm rounded">
+        <div class="card-body mt-2 p-2">
+            <h3 class="card-title text-center mb-4">
+              <strong><mark>Things to know <br> before your appointment</mark></strong>
+            </h3>
+            <div class="text-center">
+              <figure>
+                <a class="navbar-brand text-uppercase text-white text-center" href="{% url 'home' %}">
+                    <img src="{{ MEDIA_URL }}ogochuks_logo_black.png" class="img-fluid" alt="Ogochuksstyles logo">
+                </a>
+              </figure>
+            </div>
+            <div class="card w-100 border-0 text-left">
+                <div>
+                  <ul>
+                    <li>
+                      For a hair color <a 
+                      href="https://ogochuksstyles.as.me/schedule.php" 
+                      target="_blank" 
+                      rel="noopener" 
+                      aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)">
+                      appointment
+                    </a>, it's best to arrive with your hair dry and shampooed.
+                    </li>
+                    <li>
+                      Don't use too many hair <a href="{% url 'products' %}">products</a> such as styling 
+                      gels or mousses on the same day you want to get your hair done.
+                    </li>
+                    <li>
+                      Do not come with your hair tangled. I must be able to come through your hair freely. 
+                      Failure for you to be complaint will result in your being sent home. 
+                    </li>
+                  </ul>
+                </div>
+            </div>
+        </div>
+      </div>
+      <!-- Booking Policies -->
+      <div class="col-lg-4 shadow-sm rounded">
+        <div class="card-body mt-2 p-2">
+          <h3 class="card-title text-center mb-5"><strong><mark>Booking Policies</mark></strong></h3>
+          <div class="card w-100 border-0 text-left">
+              <div class="row">
+                <div class="col-6 col-sm-6 text-center">
+                  <i class="fa-solid fa-money-check-dollar fa-3x"></i>
+                  <h4>Payment</h4> 
+                  <p>
+                    We accept payments in Revolution & Cash. Bring correct change. 
+                    After Hours are additional €10.
+                  </p>
+                </div>
+                <div class="col-6 col-sm-6 text-center">
+                  <i class="fa-solid fa-money-bill-transfer fa-3x"></i>
+                  <h4>Deposit</h4>
+                  <p>
+                    A €10 non-refundable deposit is due at same time of your booking. 
+                    How to pay is sent alone with confirmation email
+                  </p>
+                </div>
+                <div class="col-6 col-sm-6 text-center">
+                  <i class="fa-solid fa-clock fa-3x"></i> 
+                  <h4>Late Policy</h4>
+                  <p>The 15-minute grace period, there will be €10 late fee. 
+                    After 20 minutes is considered as no-shows.
+                  </p>
+                </div>
+                <div class="col-6 col-sm-6 text-center">
+                  <i class="fa-solid fa-kit-medical fa-3x"></i>
+                  <h4>Cancellations</h4>
+                  <p>You may cancel at least 24 hours in advance</p>
+                </div>    
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

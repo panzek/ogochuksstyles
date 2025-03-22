@@ -13,24 +13,14 @@
       <li class="nav-item">
         <a class="nav-link text-uppercase text-white" href="{% url 'about' %}" aria-label="Go to About Us page">About</a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-uppercase text-white" href="{% url 'products' %}?category=dresses,jeans" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Services
-        </a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="{% url 'products' %}?category=dresses" aria-label="Go to women dresses page">Hair Styling</a></li>
-          <li><a class="dropdown-item" href="{% url 'products' %}?category=jeans" aria-label="Go to women jeans page">Custom Caps</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="{% url 'products' %}?category=dresses,jeans" aria-label="Go to all services page">All Services</a></li>
-        </ul>
+      <li class="nav-item">
+        <a class="nav-link text-uppercase text-white" href="{% url 'products' %}" aria-label="Go to home page">Products</a>
       </li>
       <li class="nav-item">
         <a 
-          href="https://ogochuksstyles.as.me/schedule.php" 
-          target="_blank" 
-          rel="noopener" 
-          aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)" 
-          class="btn btn-dark text-uppercase">
+          class="nav-link text-uppercase text-white" 
+          href="{% url 'products' %}" 
+          aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)">
           Book Online
         </a>
       </li>

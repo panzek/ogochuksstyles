@@ -9,7 +9,7 @@
   <div class="card border-0 vh-100">
     <!-- Video Background -->
     <div class="vh-100 ">
-      <video autoplay muted loop playsinline class="h-100 w-100" style="object-fit: cover; filter: brightness(0.4);">
+      <video autoplay muted loop playsinline class="h-100 w-100" style="object-fit: cover;">
         <source src="{{ MEDIA_URL }}hero-video.mp4" id="hero_image" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -74,7 +74,7 @@
       <div class="col-6 col-md-3">
         <img src="{{ MEDIA_URL }}ogochuksstyles_cap4.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
       </div>
-      <div class="col-12 col-md-3 mx-auto text-center mt-3">
+      <div class="col-12 col-md-4 mx-auto text-center mt-3">
         <p>
           <a href="{% url 'products' %}" aria-label="Go to all products page"><strong>Our Satin-Lined 
           Skull Caps</strong></a> are carefully designed to provide extra protection for your hair. 
@@ -84,11 +84,10 @@
         <h5>
           Remember, Ogochuks styles you!
         </h5>
-        <a href="{% url 'products' %}" class="btn home-beauty-btn btn-dark text-uppercase text-center">
+        <a href="{% url 'products' %}" class="btn home-beauty-btn btn-dark w-100 text-uppercase text-center">
           <small class="text-body-secondary">Buy Now</small>
         </a>
       </div>
-      <hr class="divider bg-lightgray">
     </div>
   </div> 
   <!-- Ogochuks Styles Section -->
@@ -149,98 +148,25 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
+      <div class="col-12 col-md-5 mx-auto text-center mt-1">
+        <!-- Add Schedule Appointment button  -->
+        <a 
+          href="https://ogochuksstyles.as.me/schedule.php" 
+          target="_blank" 
+          rel="noopener" 
+          aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)" 
+          class="btn btn-dark text-uppercase w-100 mb-5">Schedule An Appointment
+        </a>
+    </div>
     </div>
   </div>
 </div>
-<div class="container">
-  <div class="row d-flex justify-content-center gx-1">
-    <!-- Things to know before your appointment -->
-    <div class="col-lg-4 shadow-sm rounded">
-      <div class="card-body mt-2 p-2">
-          <h3 class="card-title text-center mb-4">
-            <strong><mark>Things to know <br> before your appointment</mark></strong>
-          </h3>
-          <div class="text-center">
-            <figure>
-              <a class="navbar-brand text-uppercase text-white text-center" href="{% url 'home' %}">
-                  <img src="{{ MEDIA_URL }}ogochuks_logo_black.png" class="img-fluid" alt="Ogochuksstyles logo">
-              </a>
-            </figure>
-          </div>
-          <div class="card w-100 border-0 text-left">
-              <div>
-                <ul>
-                  <li>
-                    For a hair color <a 
-                    href="https://ogochuksstyles.as.me/schedule.php" 
-                    target="_blank" 
-                    rel="noopener" 
-                    aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)">
-                    appointment
-                  </a>, it's best to arrive with your hair dry and shampooed.
-                  </li>
-                  <li>
-                    Don't use too many hair <a href="{% url 'products' %}">products</a> such as styling 
-                    gels or mousses on the same day you want to get your hair done.
-                  </li>
-                  <li>
-                    Do not come with your hair tangled. I must be able to come through your hair freely. 
-                    Failure for you to be complaint will result in your being sent home. 
-                  </li>
-                </ul>
-              </div>
-          </div>
-      </div>
-    </div>
-    <!-- Booking Policies -->
-    <div class="col-lg-4 shadow-sm rounded">
-      <div class="card-body mt-2 p-2">
-        <h3 class="card-title text-center mb-5"><strong><mark>Booking Policies</mark></strong></h3>
-        <div class="card w-100 border-0 text-left">
-            <div class="row">
-              <div class="col-6 col-sm-6 text-center">
-                <i class="fa-solid fa-money-check-dollar fa-3x"></i>
-                <h4>Payment</h4> 
-                <p>
-                  We accept payments in Revolution & Cash. Bring correct change. 
-                  After Hours are additional €10.
-                </p>
-              </div>
-              <div class="col-6 col-sm-6 text-center">
-                <i class="fa-solid fa-money-bill-transfer fa-3x"></i>
-                <h4>Deposit</h4>
-                <p>
-                  A €10 non-refundable deposit is due at same time of your booking. 
-                  How to pay is sent alone with confirmation email
-                </p>
-              </div>
-              <div class="col-6 col-sm-6 text-center">
-                <i class="fa-solid fa-clock fa-3x"></i> 
-                <h4>Late Policy</h4>
-                <p>The 15-minute grace period, there will be €10 late fee. 
-                  After 20 minutes is considered as no-shows.
-                </p>
-              </div>
-              <div class="col-6 col-sm-6 text-center">
-                <i class="fa-solid fa-kit-medical fa-3x"></i>
-                <h4>Cancellations</h4>
-                <p>You may cancel at least 24 hours in advance</p>
-              </div>    
-            </div>
-        </div>
-      </div>
-    </div>
-    </div>
-  </div>
-  <div class="col-md-6 text-center mx-auto mt-3">
-      <!-- Add Schedule Appointment button  -->
-      <a 
-        href="https://ogochuksstyles.as.me/schedule.php" 
-        target="_blank" 
-        rel="noopener" 
-        aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)" 
-        class="btn btn-dark text-uppercase w-100">Schedule An Appointment
+  <div class="text-center mt-5">
+    <figure>
+      <a class="navbar-brand text-uppercase text-white text-center" href="{% url 'home' %}">
+          <img src="{{ MEDIA_URL }}ogochuks_logo_black.png" class="img-fluid" alt="Ogochuksstyles logo">
       </a>
+    </figure>
   </div>
 </div>
 <!-- navbar scroll changes colour  -->
