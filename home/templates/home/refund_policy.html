@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Refund Policy | Ogochuks Styles  {% endblock %}
+{% block title %}Return &amp; Refund Policy | Ogochuks Styles  {% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -16,53 +16,87 @@
     <div class="row">
         <div class="col-12 col-md-6 mx-auto text-center">
             <hr>
-            <h1 class="mb-4">Refund Policy for Ogochuks Styles</h1>
+            <h1 class="mb-4">Return &amp; Refund Policy</h1>
             <hr class="mb-3">
         </div>  
     </div>  
     <div class="row">
         <div class="col-12 col-md-6 mx-auto">
-            <p>At <a href="{% url 'home' %}" aria-label="Go to home page"><strong>Ogochuks Styles</strong></a>has a 30-day return policy, 
-                which means you have 30 days after receiving your item to request a return. To be eligible 
-                for a return, your item must be in the same condition that you received it, unworn or 
-                unused, with tags, and in its original packaging. You'll also need the receipt or proof of purchase.
+            <p>At <a href="{% url 'home' %}" aria-label="Go to home page"><strong>Ogochuks Styles</strong></a>, 
+                we strive to provide quality products and excellent customer service. If you are not completely 
+                satisfied with your purchase, please review our return and refund policy below.
             </p>
+            <h3 class="mb-4">Returns</h3>
             <p>
-                To start a return, you can <a href="{% url 'contact' %}" aria-label="Go to contact us page">contact us</a>. If your return is accepted, 
-                we'll send you a return shipping label, as well as instructions on how and where to send your 
-                package. Items sent back to us without first requesting a return will not be accepted.
+                We offer a 28-day return policy, meaning you have 28 days from the date you receive your item to request a return.
             </p>
-            <p>You can always <a href="{% url 'contact' %}" aria-label="Go to contact us page">contact us</a> for any return question</p>
-
-            <h2>Damages and issues</h2>
+            <p>To be eligible for a return:.</p>
+            <ul class="ml-5">
+                <li>The item must be in its original condition—unworn, unused, with tags, and in its original packaging.</li>
+                <li>A receipt or proof of purchase is required.</li>
+            </ul>
             <p>
-                Please inspect your order upon reception and contact us immediately if the item is defective, 
-                damaged or if you receive the wrong item, so that we can evaluate the issue and make it right.
-            </p>
-            
-            <h2>Exceptions / non-returnable items</h2>
-            <p>Certain types of items cannot be returned, like perishable goods (such as food, flowers, or plants), 
-                custom products (such as special orders or personalized items), and personal care goods 
-                (such as beauty products). We also do not accept returns for hazardous materials, flammable liquids, 
-                or gases. Please get in touch if you have questions or concerns about your specific item.
-            </p>                
-            <p>Unfortunately, we cannot accept returns on sale items or gift cards.</p>
-
-            <h2>Exchanges</h2>
-            <p>
-                The fastest way to ensure you get what you want is to return the item you have, and once 
-                the return is accepted, make a separate purchase for the new item.
+                To initiate a return, please contact us first. If your return is approved, we will provide a return shipping 
+                label and instructions on how to send back your item. Items sent without prior approval will not be accepted.
             </p>
 
-            <h2>Refunds</h2>
+            <h5 class="fst-italic">Damages & Issues:</h5>
             <p>
-                We will notify you once we've received and inspected your return, and let you know if 
-                the refund was approved or not. If approved, you'll be automatically refunded on your 
-                original payment method. Please remember it can take some time for your bank or credit 
-                card company to process and post the refund too.
+                Please inspect your order upon arrival. If you receive a damaged, defective, or incorrect item, 
+                contact us immediately so we can resolve the issue. If the return is due to our error 
+                (wrong or defective item), we will cover the shipping cost. Otherwise, the consumer is responsible for return shipping fees.
+            </p> 
+            <p>
+                If you choose to return products, you are responsible for the item until we receive it. 
+                We are not liable for lost or damaged returns in such cases, and you should contact your 
+                chosen shipping carrier for any claims.
             </p>
-            <h2>Contact Us</h2>
-            <p>If you have any questions or suggestions about our Privacy Policy, do not hesitate to <a href="{% url 'contact' %}" aria-label="Go to contact us page">contact us</a>.</p>
+            <h5 class="fst-italic">Non-Returnable Items:</h5>
+            <p>Certain items cannot be returned, including:</p>
+            <ul class="ml-5">
+                <li>Custom or personalized items
+                <li>Personal care products (such as beauty items)</li>
+                <li>Hazardous materials (flammable liquids, gases, etc.)</li>
+                <li>Perishable goods (food, flowers, plants)</li>
+                <li>Sale items & gift cards</li>
+            </ul>
+            <p>If you are unsure whether your item qualifies for a return, please contact us before making a request.</p>
+            <h5 class="fst-italic"> Exchanges:</h5>
+            <p>To exchange an item, return the original item first. Once the return is accepted, you can place a new order for the desired item.</p>
+            <p>Exchanges are only permitted if the incorrect size was purchased. The item must be:</p>
+            <ul class="ml-5">
+                <li>Unused, unworn, and in original packaging.</li>
+            </ul>
+            <p>
+                To exchange an item, return the original item first. Once the return is accepted, 
+                you can place a new order for the desired item.
+            </p>
+            <p>Exchanges are only permitted if the incorrect size was purchased. The item must be:</p>
+            <ul class="ml-5">
+                <li>Unused, unworn, and in original packaging.</li>
+            </ul>
+            <h3>Refunds</h3>
+            <p>
+                Once we receive and inspect your return, we will notify you of the confirmation of 
+                the refund. If approved, your refund will be processed to your original payment 
+                method. Please note that banks and credit card companies may take additional 
+                time to process the refund.
+            </p>
+            <h5 class="fst-italic">Fraud Prevention:</h5>
+            <p>We take fraudulent activity seriously. We reserve the right to withhold refunds and block accounts if we suspect:</p>
+            <ul class="ml-5">
+                <li>False claims about missing orders</li>
+                <li>Returning items after use or wear</li>
+                <li>Mismatched return items</li>
+                <li>Fake proof of return</li>
+            </ul>
+            <p>
+                If you believe a mistake has been made, please contact us for further discussion.
+            </p>
+            <p>
+                For any questions or concerns regarding our refund and return policy, please 
+                don't hesitate to reach out to us. <a href="{% url 'contact' %}" aria-label="Go to contact us page">contact us</a>
+            </p>
         </div>
     </div>
 </div>

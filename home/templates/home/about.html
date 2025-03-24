@@ -24,12 +24,49 @@
             <hr>      
         </div>  
     </div> 
+    <div class="col-12 col-md-6 mx-auto text-start">
+        <p>
+            Welcome to <a href="{% url 'home' %}" aria-label="Go to home page">
+            <strong>Ogochuksstyles</strong></a>, where we offer premium hairstyling services for both 
+            men and women. Combining expert styling with top-quality products. We ensure 
+            every client leaves feeling refreshed and confident. Whether you're shopping 
+            for products or booking a new look, we deliver an exceptional experience every time.
+        </p>
+        <p>
+            At Ogochuksstyles, we are dedicated to providing vibrant, high-quality appointments 
+            that ensure a top-tier experience for every customer. Specialising in male and female 
+            hairstyling, hair care, and products. As more men and women from diverse backgrounds 
+            embrace their natural hair, we continue to celebrate and support this movement through our 
+            innovative styles are proud to contribute to the growing Irish hair industry. We focus on 
+            creating innovative hair accessories that meet each our clients' needs and comfort. 
+            Additionally, we are passionate about educating our customers on maintaining their 
+            hair textures and proper haircare practices through consultation or appointments.
+        </p>
+        <p>
+            Looking ahead, we're excited to launch our first satin-lined caps, designed to 
+            provide both style and protection. Whether you're protecting your hair, in sports, 
+            or any other activity, these caps offer maximum comfort and care. Our goal is 
+            to make these accessible to everyone, allowing individuals to look fresh and 
+            feel confident without compromising their hairstyle.
+        </p>
+        <h5 class="fst-italic">'Ogochuks styles you'</h5>      
+    </div> 
 </div>
 <!-- Cap -->
 <div class="container py-2"> 
-    <div class="row mt-5">
+     <!-- Cap Images -->
+    <div class="row d-flex justify-content-center g-1 mb-2 mt-5 mx-auto"> 
+        <h4 class="text-center">Satin-Lined Skull Caps</h4>
+        <!-- with col-md-3 each image takes up one-fourth of the width of the screen -->
+        <div class="col-6 col-md-3">
+            <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
+        </div>
+        <div class="col-6 col-md-3">
+            <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
+        </div>
+    </div>
+    <div class="row">
         <div class="col-12 col-md-6 mx-auto">
-            <h4>Satin-Lined Skull Caps</h4>
             <p>
                 <a href="{% url 'products' %}" aria-label="Go to all products page"><strong>Our Satin-Lined 
                 Skull Caps</strong></a> are carefully designed to provide extra protection for your hair 
@@ -58,64 +95,12 @@
             </p>
         </div>
     </div>
-     <!-- Cap Images -->
-    <div class="row d-flex justify-content-center g-1 mb-2 mx-auto"> 
-        <!-- with col-md-3 each image takes up one-fourth of the width of the screen -->
-        <div class="col-6 col-md-3">
-            <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
-        </div>
-        <div class="col-6 col-md-3">
-            <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
-        </div>
-        <div class="col-6 col-md-3">
-            <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
-        </div>
-        <div class="col-6 col-md-3">
-        <img src="{{ MEDIA_URL }}product_image/satin_lined_skull_caps.webp" class="card-img-top" alt="Satin-Lined Skull Caps">
-        </div>
-    </div>
-    <div class="card-text text-center w-50 mx-auto">
-        <h6>
-          Remember, Ogochuks styles you!
-        </h6>
-    </div>
 </div>
-
 <!-- Caps -->
 <div class="container py-2">
-    <div class="row mt-5">
-        <div class="col-12 col-md-6 mx-auto">
-            <h2>Hair Styling</h2>
-           <ul class="ml-5">
-               <li>Standard delivery within Europe takes approximately within 5 to 6 working days 
-                   (7-15 working days in selected countries outside Europe), this may vary by location 
-                   and even <a href="{% url 'products' %}" aria-label="Go to all products page"><strong>product</strong></a>, and may be sent 
-                   to you in different parcels;
-               </li>
-               <li>All items purchased with us are sent to you directly by our merchants. Getting your 
-                   order to you quickly is our priority and we've worked hard with our merchants to 
-                   provide efficient delivery;
-               </li>
-               <li>If you've purchased multiple items from different <a href="https://www.frenchconnection.com/" target="_blank" rel="noopener" aria-label="Go to French Connection page (opens new tab on third party site)">brands</a>, 
-                   you'll receive a parcel from each of them. Don't worry, you'll get a confirmation email and text message, and tracking 
-                   reference for each of your parcels which you can use to track when your goods will arrive.
-               </li>
-               <li>
-                    Please note that you have to  
-                    <a 
-                        href="https://ogochuksstyles.as.me/schedule.php" 
-                        target="_blank" 
-                        rel="noopener" 
-                        aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)">
-                    Schedule An Appointment
-                    </a>
-               </li>
-               
-           </ul>
-        </div>
-    </div>
      <!-- Cap Images -->
-    <div class="row d-flex justify-content-center g-1 mb-5 mx-auto"> 
+    <div class="row d-flex justify-content-center g-1 mx-auto"> 
+        <h4 class="text-center">Male and Female Hairstyling</h4>
         <!-- with col-md-3 each image takes up one-fourth of the width of the screen -->
         <div class="col-6 col-md-3">
             <img src="{{ MEDIA_URL }}braids_1.webp" class="card-img-top d-block w-100" alt="Satin-Lined Skull Caps">
@@ -123,9 +108,24 @@
         <div class="col-6 col-md-3 ">
             <img src="{{ MEDIA_URL }}barrel_twist_locs.webp" class="card-img-top d-block w-100" alt="Satin-Lined Skull Caps">
         </div>
-        <!-- <div class="col-6 col-md-3 ">
-            <img src="{{ MEDIA_URL }}barrel_twist_non_locs.webp" class="card-img-top d-block w-100" alt="Satin-Lined Skull Caps">
-        </div> -->
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 mx-auto">
+           <ul class="ml-5">
+               <li>Our services include <strong>two-strand twists, plaits, cornrows, and loc re-twists</strong> tailored to any hair type.
+               </li>
+               <li>
+                    <a 
+                        href="https://ogochuksstyles.as.me/schedule.php" 
+                        target="_blank" 
+                        rel="noopener" 
+                        aria-label="Go to OgochuksStyles' appointment page (opens new tab on third party site)">
+                        <strong>Schedule An Appointment</strong>
+                    </a>
+               </li>
+               
+           </ul>
+        </div>
     </div>
 </div>
 

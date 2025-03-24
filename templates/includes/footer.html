@@ -55,43 +55,42 @@
                     </div>
                     </form>
                 </div>
-                <div class="col-12 col-md-3">
-                  <h5>Customer Service</h5>
-                  <ul class="list-group list-group-flush my-0">
-                    <li class="list-group-item bg-transparent list-group-flush p-1 border-0">
-                      <a href="{% url 'refund' %}" aria-label="Go to refund policy page" class="list-group-item bg-transparent border-0 p-0 text-light">Refund Policy</a>
-                    </li>
-                    <li class="list-group-item bg-transparent list-group-flush p-1 border-0">
+                <div class="col-12 col-md-3 mt-2 d-none d-md-block">
+                  <div>
+                    <span class="navbar-text text-white">
+                      <a href="{% url 'refund' %}" aria-label="Go to refund policy page" class="list-group-item bg-transparent border-0 p-0 text-light">Returns &amp; Refund</a>
+                    </span>
+                  </div>
+                  <div>
+                    <span class="navbar-text text-white">
                       <a href="{% url 'privacy' %}" aria-label="Go to privacy policy page" class="list-group-item bg-transparent border-0 p-0 text-light">Privacy Policy</a>
-                    </li>
-                    <li class="list-group-item bg-transparent list-group-flush p-1 border-0">
+                    </span>
+                  </div>
+                  <div>
+                    <span class="navbar-text text-white">
                       <a href="{% url 'terms' %}" aria-label="Go to terms and service page" class="list-group-item bg-transparent border-0 p-0 text-light">Terms of Service</a>
-                    </li>
-                    <li class="list-group-item bg-transparent"></li>
-                  </ul>
-                </div>
-                <div class="col-12 col-md-3">
-                  <h5>Buy on OgochuksStyles</h5>
-                  <ul class="list-group list-group-flush p-1 border-0">
-                    <li class="list-group-item bg-transparent list-group-flush p-1 border-0">
+                    </span>
+                  </div>
+                </div> 
+                <div class="col-12 col-md-3 mt-2 d-none d-md-block">
+                  <div>
+                    <span class="navbar-text text-white">
                       <a href="{% url 'bookings' %}" aria-label="Go to how to shop on bessie + beau page" class="list-group-item bg-transparent border-0 p-0 text-light">Booking Appointments</a>
-                    </li>
-                    <li class="list-group-item bg-transparent list-group-flush p-1 border-0">
-                      <a href="{% url 'delivery_returns' %}" aria-label="Go to delivery and return page" class="list-group-item bg-transparent border-0 p-0 text-light">Delivery &amp; Returns</a>
-                    </li>
-                    <li class="list-group-item bg-transparent list-group-flush p-1 border-0">
+                    </span>
+                  </div>
+
+                  <div>
+                    <span class="navbar-text text-white">
                       <a href="{% url 'user_guide' %}" aria-label="Go to user guide page" class="list-group-item bg-transparent border-0 p-0 text-light">User Guide</a>
-                    </li>
-                    <li class="list-group-item bg-transparent"></li>
-                  </ul>
-                </div>
-                <div class="col-12 col-md-3">
-                  <ul class="list-group list-group-flush p-1 border-0">
-                    <li class="list-group-item bg-transparent list-group-flush p-1 border-0">
-                      <span class="navbar-text text-white">(c) OgochuksStyles {{ current_year }}. All Rights Reserved</span>
-                    </li>
-                    <li class="list-group-item bg-transparent list-group-flush border-0 text-white">
-                      Powered by
+                    </span>
+                  </div>
+                </div> 
+                <div class="col-12 col-md-3 mt-2">
+                  <div>
+                    <span class="navbar-text text-white">(c) OgochuksStyles {{ current_year }}. All Rights Reserved</span>
+                  </div>
+                  <div>
+                    Powered by
                       <a 
                         class="text-white"
                         href="https://www.panzeksolutions.com" 
@@ -99,8 +98,7 @@
                         aria-label="Go to Panzek Solutions' tiktok page (opens new tab on third party site)" 
                         title="Panzek Solutions">Panzek Solutions
                       </a>
-                    </li>
-                  </ul>
+                  </div>
                 </div>
              </div>
            </section>

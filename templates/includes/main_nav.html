@@ -83,5 +83,31 @@
             </li>
         </ul>
     </div>
+    <!-- Show on mobile only -->
+    <div class="col-12 d-block d-md-none">
+      <ul class="navbar-nav mx-auto ">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Customer Service
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'refund' %}" aria-label="Go to refund policy page">Return &amp; Refund Policy</a></li>
+            <li><a class="dropdown-item" href="{% url 'privacy' %}" aria-label="Go to privacy policy page">Privacy Policy</a></li>
+            <li><a class="dropdown-item" href="{% url 'terms' %}" aria-label="Go to terms and service page">Terms of Service</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav mx-auto ">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Buy on OgochuksStyles
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="{% url 'bookings' %}" aria-label="Go to how to shop on bessie + beau page">Booking Appointments</a></li>
+            <li><a class="dropdown-item" href="{% url 'user_guide' %}" aria-label="Go to user guide page">User Guide</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div> 
   </div>
 </div>
