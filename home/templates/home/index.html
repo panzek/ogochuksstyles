@@ -6,16 +6,20 @@
 {% block content %}
 <div>
   <!-- Hero video -->
-  <div class="card border-0 vh-100">
+  <div class="card border-0">
     <!-- Video Background -->
-    <div class="vh-100 ">
-      <video autoplay muted loop playsinline class="h-100 w-100" style="object-fit: cover;">
-        <source src="{{ MEDIA_URL }}hero-video.mp4" id="hero_image" type="video/mp4">
+    <div class="w-100 position-relative" style="max-width: 100vw; margin: 0;">
+      <video autoplay muted loop playsinline class="w-100 d-block d-md-none" style="aspect-ratio: 5/3; object-fit: contain; max-height: 100vh; max-width: 100vw; margin: 0;">
+        <source src="{{ MEDIA_URL }}hero-video.mp4" id="hero_video_mobile" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <video autoplay muted loop playsinline class="h-100 w-100 d-none d-md-block" style="object-fit: cover;">
+        <source src="{{ MEDIA_URL }}hero-video.mp4" id="hero_video_desktop" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
     <!-- Overlay Content -->
-    <div class="card-img-overlay d-flex justify-content-center align-items-center align-self-md-end">
+    <div class="card-img-overlay d-flex justify-content-center align-items-center align-self-md-center d-none d-md-block">
       <div class="text-center text-white">
         <div>
           <a class="navbar-brand text-uppercase text-white w-25" href="{% url 'home' %}">
@@ -25,7 +29,7 @@
         <span class="haute-couture my-5">
           Dublin | Ireland
         </span>
-        <div class="mt-3 ">
+        <div class="mt-0 ">
           <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
           </svg>
@@ -34,8 +38,8 @@
     </div>
   </div>
   <!-- Our Services Section -->
-  <div class="container col-sm-12 col-md-6 mt-5 pb-5">
-    <h3 class="text-uppercase text-muted text-center"><mark>Our Services</mark></h3> 
+  <div class="container col-sm-12 col-md-6 pb-5">
+    <h3 class="text-uppercase text-muted text-center mt-2"><mark>Our Services</mark></h3> 
     <div class="card-group g-2">
       <div class="card border-0 shadow">
         <div class="card-body">
