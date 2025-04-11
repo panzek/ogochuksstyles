@@ -120,7 +120,7 @@ def adjust_cart(request, item_id):
 
 
 def remove_from_cart(request, item_id):
-    """ A view to remove items from shopping cart """
+    """ A view to remove items from shopping cart and restore stock """
 
     try:
         product = get_object_or_404(Product, pk=item_id)
@@ -130,13 +130,22 @@ def remove_from_cart(request, item_id):
         cart = request.session.get('cart', {})
 
         if size:
+            quantity = cart[item_id]['items_by_size'][size]
             del cart[item_id]['items_by_size'][size]
+            # Restore stock
+            product.stock += quantity
+            product.save()
+            messages.success(request, f'Removed size {size.upper()} {product.name} from your cart (restored {quantity} to stock)')
+            # clean up if no sizes left
             if not cart[item_id]['items_by_size']:
                 cart.pop(item_id)
-                messages.success(request, f'Removed size {size.upper()} {product.name} from your cart')
         else:
+            quantity = cart[item_id]
             cart.pop(item_id)
-            messages.success(request, f'Removed {product.name} from your cart')
+            # Restore stock
+            product.stock += quantity
+            product.save()
+            messages.success(request, f'Removed {product.name} from your cart (restored {quantity} to stock)')
 
         request.session['cart'] = cart
         return HttpResponse(status=200)
