@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from .models import Order, OrderLineItem
 from profiles.models import UserProfile
 from products.models import Product
+from checkout.views import _send_confirmation_email  # import the existing function
 import stripe
 import json
 
@@ -10,6 +11,15 @@ class StripeWH_Handler:
     def __init__(self, request):
         self.request = request
 
+    def handle_event(self, event):
+        """
+        Handle a generic/unknown/unexpected webhook event
+        """
+        return HttpResponse(
+            content=f'Unhandled webhook received: {event["type"]}',
+            status=200
+        )
+  
     def handle_payment_intent_succeeded(self, event):
         """Handle the payment_intent.succeeded webhook from Stripe"""
         intent = event.data.object
@@ -17,7 +27,7 @@ class StripeWH_Handler:
 
         try:
             order = Order.objects.get(stripe_pid=pid)
-            self._send_confirmation_email(order)
+            _send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
                 status=200)
@@ -84,7 +94,7 @@ class StripeWH_Handler:
                                     product_size=size,
                                 )
 
-                self._send_confirmation_email(order)
+                _send_confirmation_email(order)
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
                     status=200)
