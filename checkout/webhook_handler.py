@@ -26,11 +26,13 @@ class StripeWH_Handler:
         pid = intent.id
 
         try:
-            order = Order.objects.get(stripe_pid=pid)
-            _send_confirmation_email(order)
-            return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
-                status=200)
+            existing_orders = Order.objects.filter(stripe_pid=pid)
+            if existing_orders.exists:
+                order = existing_orders.first()
+                _send_confirmation_email(order)
+                return HttpResponse(
+                    content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                    status=200)
         except Order.DoesNotExist:
             cart = intent.metadata.get('cart')
             save_info = intent.metadata.get('save_info')
