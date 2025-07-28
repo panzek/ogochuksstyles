@@ -223,9 +223,6 @@ def checkout_success(request):
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
 
-    # Send confirmation email
-    _send_confirmation_email(order)
-
     if 'cart' in request.session:
         del request.session['cart']
 
