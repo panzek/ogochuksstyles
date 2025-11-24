@@ -9,10 +9,15 @@ class ProductAdmin(admin.ModelAdmin):
         'sku',
         'name',
         'category',
+        'regular_price',
+        'discount_percent',
         'price',
+        'is_on_sale',
         'rating',
         'image',
     )
+    
+    search_fields = ('sku', 'name', 'category__name',)
 
     ordering = ('sku',)
 
