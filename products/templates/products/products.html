@@ -68,7 +68,22 @@
                     <p class="mb-0 fs-6 product-name">{{ product.name | capfirst}}</p>
                 </div>
                 <div class="card-footer bg-light pt-0 border-0">
-                    <p class="mb-0 fst-italic">€{{ product.price }}</p>
+                    {% if product.is_on_sale %}
+                        <button type="button" class="btn btn-dark position-relative mt-4 mb-1">
+                            <h6 class="mb-2">Black Friday Sale!</h6>
+                            <h3><span class="position-absolute top-0 start-100 translate-middle badge bg-danger"
+                                style="transform: translate(-50%, -80%)!important;">
+                                -{{ product.get_discount_percentage|floatformat:0 }}% Off
+                                <span class="visually-hidden">discount</span>
+                            </span></h3>
+                        </button>
+                        <p class="mb-0 d-flex align-items-center justify-content-center gap-2">
+                            <span class="mb-0 fw-bold ">€{{ product.price }}</span>
+                            <span class="mb-0 fst-italic text-muted">was <del>€{{ product.regular_price|floatformat:2 }}</del></span>
+                        </p>  
+                    {% else %}
+                        <p class="mb-0 fst-italic">€{{ product.price }}</p>
+                    {% endif %}
                     {% if product.category %}
                         <p class="small mt-1 mb-0">
                             <a class="text-muted" href="{% url 'products' %}?category={{ product.category.name }}">
