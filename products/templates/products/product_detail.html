@@ -34,7 +34,7 @@
                 <p class="mb-2 fs-6 product-name"><strong>{{ product.name }}</strong></p>   
                 {% if product.is_on_sale %}
                     <button type="button" class="btn btn-dark position-relative mt-4 mb-1">
-                        <h6 class="mb-2">Black Friday Sale!</h6>
+                        <h6 class="mb-2">Sale!</h6>
                         <h3><span class="position-absolute top-0 start-100 translate-middle badge bg-danger"
                             style="transform: translate(-50%, -80%)!important;">
                             -{{ product.get_discount_percentage|floatformat:0 }}% Off
