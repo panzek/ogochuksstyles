@@ -45,7 +45,7 @@ def add_to_cart(request, item_id):
     """ A view to add items to the shopping cart with stock management """
 
     product = get_object_or_404(Product, pk=item_id)
-    quantity = int(request.POST.get('quantity'))
+    quantity = int(request.POST.get('quantity', 1))
     redirect_url = request.POST.get('redirect_url')
     size = None
     if 'product_size' in request.POST:
